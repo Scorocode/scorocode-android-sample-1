@@ -34,16 +34,32 @@ dependencies {
     //Scorocode
     compile 'ru.prof-itgroup:scorocode_sdk:1.1.0'
 
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+
+    compile 'com.android.support:design:25.1.0'
+
     //Butter knife
-    compile 'com.jakewharton:butterknife:8.0.1'
-    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+
+    //Dagger 2
+    compile 'com.google.dagger:dagger:2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    //tests
+    testCompile "org.mockito:mockito-core:2.1.0"
+    testCompile 'junit:junit:4.12'
+
+    testCompile "org.powermock:powermock-api-mockito:1.6.2"
+    testCompile "org.powermock:powermock-module-junit4:1.6.2"
 
     //RxJava
     compile 'io.reactivex:rxjava:1.2.0'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
 
-    //Picasso
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
 }
