@@ -12,9 +12,9 @@ import dagger.Component;
 @Component(modules = LoginScreenModule.class)
 public interface LoginScreenComponent {
 
-    public void inject(LoginActivity activity);
+    void inject(LoginActivity activity);
 
-    public class Injector {
+    class Injector {
         public static void inject(LoginActivity activity) {
             DaggerLoginScreenComponent.builder()
                     .loginScreenModule(new LoginScreenModule(activity))

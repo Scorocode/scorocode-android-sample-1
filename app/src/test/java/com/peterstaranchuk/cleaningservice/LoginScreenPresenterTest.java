@@ -50,7 +50,7 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).getEmail();
         verify(view).getPassword();
-        verify(view).showError();
+        verify(model).handleError();
     }
 
     @Test

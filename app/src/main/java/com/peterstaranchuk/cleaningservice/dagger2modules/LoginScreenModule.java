@@ -22,17 +22,8 @@ public class LoginScreenModule {
     }
 
     @Provides
-    Action1<CharSequence> action1() {
-        return new Action1<CharSequence>() {
-            @Override
-            public void call(CharSequence charSequence) {
-                if(!view.getEmail().isEmpty() && !view.getPassword().isEmpty()) {
-                    view.enableLoginButton();
-                } else {
-                    view.disableLoginButton();
-                }
-            }
-        };
+    Action1<CharSequence> dataCheckCallback(LoginScreenPresenter presenter) {
+        return presenter.getDataCheckCallback();
     }
 
     @Provides

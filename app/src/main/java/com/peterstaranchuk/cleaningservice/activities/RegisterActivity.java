@@ -10,17 +10,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservice.R;
+import com.peterstaranchuk.cleaningservice.dagger2components.RegisterScreenMVPComponent;
+import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
+import com.peterstaranchuk.cleaningservice.presenter.RegisterScreenPresenter;
+import com.peterstaranchuk.cleaningservice.view.RegisterScreenView;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ru.profit_group.scorocode_sdk.Callbacks.CallbackRegisterUser;
-import ru.profit_group.scorocode_sdk.scorocode_objects.User;
 import rx.functions.Action1;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements RegisterScreenView {
+
     @BindView(R.id.etUserName) EditText etUserName;
     @BindView(R.id.etEmail) EditText etEmail;
     @BindView(R.id.etPassword) EditText etPassword;
@@ -29,85 +33,77 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.btnLogin) Button btnLogin;
     @BindView(R.id.llRepeatPassword) LinearLayout llRepeatPassword;
     @BindView(R.id.llUserName) LinearLayout llUserName;
+    @Inject RegisterScreenPresenter presenter;
+    @Inject Action1<CharSequence> inputCheckCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-        setInitialScreenState();
-
-        Action1<CharSequence> action = new Action1<CharSequence>() {
-            @Override
-            public void call(CharSequence charSequence) {
-                if(isAllFieldsValid()) {
-                    InputHelper.enableButton(btnRegister);
-                } else {
-                    if(InputHelper.isNotEmpty(etPassword) && InputHelper.isNotEmpty(etRepeatPassword) && !isPasswordsMatch()) {
-                        Toast.makeText(RegisterActivity.this, R.string.notMatchPasswords, Toast.LENGTH_SHORT).show();
-                    }
-                    InputHelper.disableButton(btnRegister);
-                }
-            }
-        };
-
-        InputHelper.checkForEmptyEnter(etUserName, action);
-        InputHelper.checkForEmptyEnter(etEmail, action);
-        InputHelper.checkForEmptyEnter(etPassword, action);
-        InputHelper.checkForEmptyEnter(etRepeatPassword, action);
+        RegisterScreenMVPComponent.Injector.inject(this);
+        presenter.onCreateScreen();
     }
 
-    private void setInitialScreenState() {
-        InputHelper.disableButton(btnRegister);
+    @Override
+    public void setInitialScreenState() {
+        disableRegisterButton();
         btnLogin.setVisibility(View.GONE);
         llRepeatPassword.setVisibility(View.VISIBLE);
         llUserName.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
     @OnClick(R.id.btnRegister)
     public void onBtnRegisterClicked(View registerButton) {
-        //To register new user (add it's info in users collection) you should
-        //1.Create new object of User class
-        User user = new User();
-
-        //2. Prepare information for user registration (it's userName, email and password)
-        String userName = etUserName.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-
-        //3. Use register() method of User class with userName, email, password and callback
-        //as a parameters
-        user.register(userName, email, password, new CallbackRegisterUser() {
-            @Override
-            public void onRegisterSucceed() {
-                //if all info's format correct and there is no any user with this
-                // email in server (inside users collection)
-                //new user with this data will be created
-                finish();
-            }
-
-            @Override
-            public void onRegisterFailed(String errorCode, String errorMessage) {
-                //if user registration failed you can handle this case.
-                // You can also see the reason why registration failed (code and message of error).
-                Toast.makeText(RegisterActivity.this, R.string.errorDuringRegister, Toast.LENGTH_SHORT).show();
-            }
-        });
+        presenter.onRegisterButtonPressed();
     }
 
-    private boolean isAllFieldsValid() {
-        if(InputHelper.isNotEmpty(etUserName) && InputHelper.isNotEmpty(etEmail) && InputHelper.isNotEmpty(etPassword) && InputHelper.isNotEmpty(etRepeatPassword) && isPasswordsMatch()) {
-            return true;
-        }
-        return false;
+    @Override
+    public void setDataListeners() {
+        InputHelper.checkForEmptyEnter(etUserName, inputCheckCallback);
+        InputHelper.checkForEmptyEnter(etEmail, inputCheckCallback);
+        InputHelper.checkForEmptyEnter(etPassword, inputCheckCallback);
+        InputHelper.checkForEmptyEnter(etRepeatPassword, inputCheckCallback);
     }
 
-    private boolean isPasswordsMatch() {
-        if(etPassword.getText().toString().equals(etRepeatPassword.getText().toString())) {
-            return true;
-        }
-        return false;
+    @Override
+    public String getUserName() {
+        return InputHelper.getStringFrom(etUserName);
+    }
+
+    @Override
+    public String getEmail() {
+        return InputHelper.getStringFrom(etEmail);
+    }
+
+    @Override
+    public String getPassword() {
+        return InputHelper.getStringFrom(etPassword);
+    }
+
+    @Override
+    public String getRepeatedPassword() {
+        return InputHelper.getStringFrom(etRepeatPassword);
+    }
+
+    @Override
+    public void enableRegisterButton() {
+        InputHelper.enableButton(btnRegister);
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(RegisterActivity.this, R.string.notMatchPasswords, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void disableRegisterButton() {
+        InputHelper.disableButton(btnRegister);
     }
 
     public static void display(Context context) {

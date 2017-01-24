@@ -3,6 +3,8 @@ package com.peterstaranchuk.cleaningservice.presenter;
 import com.peterstaranchuk.cleaningservice.model.LoginScreenModel;
 import com.peterstaranchuk.cleaningservice.view.LoginScreenView;
 
+import rx.functions.Action1;
+
 /**
  * Created by Peter Staranchuk.
  */
@@ -34,5 +36,18 @@ public class LoginScreenPresenter {
 
     public void onRegisterButtonClicked() {
         view.openRegisterScreen();
+    }
+
+    public Action1<CharSequence> getDataCheckCallback() {
+        return new Action1<CharSequence>() {
+            @Override
+            public void call(CharSequence charSequence) {
+                if(!view.getEmail().isEmpty() && !view.getPassword().isEmpty()) {
+                    view.enableLoginButton();
+                } else {
+                    view.disableLoginButton();
+                }
+            }
+        };
     }
 }
