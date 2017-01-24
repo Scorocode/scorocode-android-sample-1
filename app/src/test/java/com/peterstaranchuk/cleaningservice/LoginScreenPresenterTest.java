@@ -38,7 +38,7 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).getEmail();
         verify(view).getPassword();
-        verify(view).loginUser();
+        verify(model).loginUser(anyString(), anyString());
     }
 
     @Test

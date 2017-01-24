@@ -18,9 +18,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ru.profit_group.scorocode_sdk.Callbacks.CallbackLoginUser;
 import ru.profit_group.scorocode_sdk.ScorocodeSdk;
-import ru.profit_group.scorocode_sdk.scorocode_objects.User;
 import rx.functions.Action1;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreenView {
@@ -30,7 +28,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     @BindView(R.id.btnLogin) Button btnLogin;
     @BindView(R.id.btnRegister) Button btnRegister;
 
-    @Inject CallbackLoginUser callbackLoginUser;
     @Inject Action1<CharSequence> action;
     @Inject LoginScreenPresenter presenter;
 
@@ -68,17 +65,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     @Override
     public String getPassword() {
         return InputHelper.getStringFrom(etPassword);
-    }
-
-    @Override
-    public void loginUser() {
-        User user = new User();
-        user.login(getEmail(), getPassword(), callbackLoginUser);
-    }
-
-    @Override
-    public void showError() {
-        callbackLoginUser.onLoginFailed("", getString(R.string.wrong_data_error));
     }
 
     @Override

@@ -12,10 +12,6 @@ public interface LoginScreenView {
 
     String getPassword();
 
-    void loginUser();
-
-    void showError();
-
     Context getContext();
 
     void enableLoginButton();

@@ -21,9 +21,9 @@ public class LoginScreenPresenter {
         String password = view.getPassword();
 
         if(model.isDataValid(email, password)) {
-            view.loginUser();
+            model.loginUser(email, password);
         } else {
-            view.showError();
+            model.handleError();
         }
     }
 
