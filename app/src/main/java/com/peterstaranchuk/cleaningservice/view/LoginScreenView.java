@@ -21,4 +21,6 @@ public interface LoginScreenView {
     void setDataListeners();
 
     void openRegisterScreen();
+
+    void setItemsVisibility();
 }

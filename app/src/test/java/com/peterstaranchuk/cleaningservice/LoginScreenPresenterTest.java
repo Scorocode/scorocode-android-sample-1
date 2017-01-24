@@ -61,6 +61,7 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).disableLoginButton();
         verify(view).setDataListeners();
+        verify(view).setItemsVisibility();
     }
 
     @Test

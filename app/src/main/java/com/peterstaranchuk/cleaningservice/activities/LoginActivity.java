@@ -92,4 +92,10 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     public void openRegisterScreen() {
         RegisterActivity.display(getContext());
     }
+
+    @Override
+    public void setItemsVisibility() {
+        ButterKnife.findById(this, R.id.tvTitle).setVisibility(View.VISIBLE);
+        ButterKnife.findById(this, R.id.ivPicture).setVisibility(View.VISIBLE);
+    }
 }
