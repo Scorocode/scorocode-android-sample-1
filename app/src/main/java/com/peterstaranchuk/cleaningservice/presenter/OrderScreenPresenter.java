@@ -1,7 +1,11 @@
 package com.peterstaranchuk.cleaningservice.presenter;
 
+import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
+
+import ru.profit_group.scorocode_sdk.Callbacks.CallbackDocumentSaved;
+import rx.functions.Action1;
 
 /**
  * Created by Peter Staranchuk.
@@ -10,9 +14,85 @@ import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 public class OrderScreenPresenter {
     private OrderScreenView view;
     private OrderScreenModel model;
+    private PropertyType propertyType;
 
     public OrderScreenPresenter(OrderScreenView view, OrderScreenModel model) {
         this.view = view;
         this.model = model;
+        propertyType = PropertyType.HOUSE;
+    }
+
+    public void onCreate() {
+        view.setDefaultState();
+        view.setOrderInfoChangedListeners();
+    }
+
+    public void setPropertyType(PropertyType propertyType) {
+        this.propertyType = propertyType;
+        view.highlightSelectedMode(getHouseControlColor(), getApartmentControlColor());
+        view.changeTitle();
+
+        recalculatePrice();
+    }
+
+    private void recalculatePrice() {
+        Double price = model.getPrice(getPropertyType(), view.getSizeInSquareFoots(), view.getBedroomsCount(), view.getBathroomsCount());
+        view.setPrice(price);
+    }
+
+    private int getApartmentControlColor() {
+        return getPropertyType().equals(PropertyType.APARTMENT)? android.R.color.white : android.R.color.darker_gray;
+    }
+
+    private int getHouseControlColor() {
+        return getPropertyType().equals(PropertyType.HOUSE)? android.R.color.white : android.R.color.darker_gray;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType == null? propertyType.HOUSE : propertyType;
+    }
+
+    public Action1<CharSequence> getStateChangedAction() {
+        return new Action1<CharSequence>() {
+            @Override
+            public void call(CharSequence s) {
+                recalculatePrice();
+            }
+        };
+    }
+
+    public Action1<Void> getActionSetHousePropertyType() {
+        return new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                setPropertyType(PropertyType.HOUSE);
+            }
+        };
+    }
+
+    public Action1<Void> getActionSetApartmentPropertyType() {
+        return new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                setPropertyType(PropertyType.APARTMENT);
+            }
+        };
+    }
+
+    public void onMakeOrderButtonClicked() {
+        CallbackDocumentSaved callbackDocumentSaved = new CallbackDocumentSaved() {
+            @Override
+            public void onDocumentSaved() {
+                view.orderSent();
+            }
+
+            @Override
+            public void onDocumentSaveFailed(String errorCode, String errorMessage) {
+                view.errorDuringOrderSending();
+            }
+        };
+
+        model.placeOrder(view.getAddress(), view.getSizeInSquareFoots(),
+                view.getBathroomsCount(), view.getBedroomsCount(), callbackDocumentSaved);
     }
 }

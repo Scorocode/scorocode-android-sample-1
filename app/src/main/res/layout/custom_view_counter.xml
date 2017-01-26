@@ -21,7 +21,6 @@
 
         <TextView
             android:id="@+id/tvCounter"
-            android:text="0"
             style="@style/labelStyle"
             android:background="@drawable/custom_counter_border"
             android:paddingTop="16dp"

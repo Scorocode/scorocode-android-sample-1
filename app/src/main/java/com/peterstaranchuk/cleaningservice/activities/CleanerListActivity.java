@@ -49,7 +49,7 @@ public class CleanerListActivity extends AppCompatActivity {
     private void refreshList() {
         //To get all documents from collection you should:
         //1.Create new object of Query class
-        Query query = new Query(getString(R.string.collectionName));
+        Query query = new Query(getString(R.string.collectionNameCleaners));
 
         //2.Don't specify any criteria of search (so it will searching for all documents).
         //3.Use findDocument() method of Query class
@@ -123,7 +123,7 @@ public class CleanerListActivity extends AppCompatActivity {
     private void removeSelectedDocument(DocumentInfo clickedDocument) {
         //To remove document from server (from collection) you should:
         //1. create new Query class. You should also specify collection name in constructor
-        Query query = new Query(getString(R.string.collectionName));
+        Query query = new Query(getString(R.string.collectionNameCleaners));
 
         //2. find document in collection using one of Query methods
         //(in this case we searching for document with particular id)

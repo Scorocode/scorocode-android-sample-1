@@ -118,7 +118,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void editDocument() {
         //To edit document which already exist on server you should
         //1. Create new document object and specify name of collection (where it is located) in constructor
-        final Document document = new Document(getString(R.string.collectionName));
+        final Document document = new Document(getString(R.string.collectionNameCleaners));
         //2. Get document from server by it's id. You can previously find this document
         //with findDocument() method from Query class.
         document.getDocumentById(getDocumentInfo().getId(), new CallbackGetDocumentById() {
@@ -177,7 +177,7 @@ public class DocumentActivity extends AppCompatActivity {
     public void onBtnAddDocumentClicked(View addDocumentButton) {
         //To create new document you should
         //1. Create new document object for your collection
-        Document document = new Document(getString(R.string.collectionName));
+        Document document = new Document(getString(R.string.collectionNameCleaners));
 
         //2.Prepare info which you want to write inside document
         String documentName = InputHelper.getStringFrom(etDocumentName);

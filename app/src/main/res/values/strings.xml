@@ -11,7 +11,7 @@
     <string name="appKey">d09ddf33d9d540ebbcd8eb738a5ff1d6</string>
     <string name="clientKey">9f27eaf9dd7742bb972c048525afdb08</string>
     <string name="masterKey">0952dd1a84fb4c41989634ad858fc6de</string>
-    <string name="collectionName">cleaners</string>
+    <string name="collectionNameCleaners">cleaners</string>
     <string name="documents">Documents:</string>
     <string name="documentName">DocumentName:</string>
     <string name="documentId">Document id:</string>
@@ -46,4 +46,23 @@
     <string name="no_item_selected">No item selected</string>
     <string name="change_document_info">Change</string>
     <string name="cleanservice">CleanService</string>
+    <string name="price_for_cleaning">Price for cleaning</string>
+    <string name="currency_sign">$</string>
+    <string name="tell_us_about_your">Tell us about your</string>
+    <string name="house">House</string>
+    <string name="apartment">Apartment</string>
+    <string name="amount_of_bedrooms">Amount of bedrooms:</string>
+    <string name="amount_of_bathrooms">Amount of bathrooms:</string>
+    <string name="area_in_square_foots">Area in Square foots:</string>
+    <string name="enter_size_of_your_house_in_square_foots">Enter size of your house in square foots</string>
+    <string name="make_an_order">Make an order</string>
+    <string name="you_live_in">You live in:</string>
+    <string name="your_address">Your address:</string>
+    <string name="enter_your_address">Enter your address</string>
+    <string name="collectionNameOrders">orders</string>
+    <string name="addressField">address</string>
+    <string name="sizeInSquareFootsField">sizeInSquareFoots</string>
+    <string name="numberOfBedroomsField">numberOfBedrooms</string>
+    <string name="numberOfBathroomsField">numberOfBathrooms</string>
+    <string name="userNameField">userName</string>
 </resources>

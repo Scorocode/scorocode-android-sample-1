@@ -11,6 +11,7 @@ import com.peterstaranchuk.cleaningservice.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.functions.Action1;
 
 /**
  * Created by Peter Staranchuk.
@@ -18,6 +19,7 @@ import butterknife.OnClick;
 
 public class CounterView extends LinearLayout {
     @BindView(R.id.tvCounter) TextView tvCounter;
+    private Action1<CharSequence> clickAction;
 
     public CounterView(Context context) {
         super(context);
@@ -37,6 +39,7 @@ public class CounterView extends LinearLayout {
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.custom_view_counter, this);
         ButterKnife.bind(this);
+        tvCounter.setText(String.valueOf(1));
     }
 
     @OnClick(R.id.llLeft)
@@ -45,17 +48,30 @@ public class CounterView extends LinearLayout {
         if(newAmount < 0) {
             newAmount = 0L;
         }
-        tvCounter.setText(String.valueOf(newAmount));
+
+        String newAmountAsString = String.valueOf(newAmount);
+        tvCounter.setText(newAmountAsString);
+
+        if(clickAction != null) {
+            clickAction.call(newAmountAsString);
+        }
     }
 
     @OnClick(R.id.llRight)
     public void onCountUpButtonClicked() {
         String newAmount = String.valueOf(getCurrentCount() + 1L);
         tvCounter.setText(newAmount);
+
+        if(clickAction != null) {
+            clickAction.call(newAmount);
+        }
     }
 
     public long getCurrentCount() {
         return Long.valueOf(tvCounter.getText().toString());
     }
 
+    public void setCounterClickAction(Action1<CharSequence> clickAction) {
+        this.clickAction = clickAction;
+    }
 }
