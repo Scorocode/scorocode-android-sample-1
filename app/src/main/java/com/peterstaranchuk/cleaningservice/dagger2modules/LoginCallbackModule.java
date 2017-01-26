@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
-import com.peterstaranchuk.cleaningservice.activities.MainActivity;
+import com.peterstaranchuk.cleaningservice.activities.OrderActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,7 +31,7 @@ public class LoginCallbackModule {
             public void onLoginSucceed(ResponseLogin responseLogin) {
                 //if user account exist in server (inside users collection)
                 //when login will be successful
-                MainActivity.display(context);
+                OrderActivity.display(context);
             }
 
             @Override

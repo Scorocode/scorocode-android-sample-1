@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/llLeft"
+        android:orientation="horizontal"
+        android:background="@drawable/custom_counter_border"
+        android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvCounter"
+            android:text="0"
+            style="@style/labelStyle"
+            android:background="@drawable/custom_counter_border"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/llRight"
+        android:background="@drawable/custom_counter_border"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

@@ -29,7 +29,7 @@ import ru.profit_group.scorocode_sdk.Responses.data.ResponseRemove;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 import ru.profit_group.scorocode_sdk.scorocode_objects.Query;
 
-public class MainActivity extends AppCompatActivity {
+public class CleanerListActivity extends AppCompatActivity {
 
     @BindView(R.id.lvDocuments) ListView lvDocuments;
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDocumentFound(final List<DocumentInfo> documentInfos) {
                 //As a result you have list of DocumentInfo objects
                 //All information about documents stored in this class
-                CleanersAdapter adapter = new CleanersAdapter(MainActivity.this, documentInfos, R.layout.item_document);
+                CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_document);
                 lvDocuments.setAdapter(adapter);
                 lvDocuments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -72,15 +72,15 @@ public class MainActivity extends AppCompatActivity {
             public void onDocumentNotFound(String errorCode, String errorMessage) {
                 //You can handle case if no documents were found.
                 //You can also see error code and message if searching process was failed
-                Toast.makeText(MainActivity.this, R.string.errorDuringDocumentLoading, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanerListActivity.this, R.string.errorDuringDocumentLoading, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void showChooseActionDialog(final List<DocumentInfo> documentInfos, final int position) {
-        final View dialogView = LayoutInflater.from(MainActivity.this).inflate(R.layout.item_action_view, null);
+        final View dialogView = LayoutInflater.from(CleanerListActivity.this).inflate(R.layout.item_action_view, null);
 
-        new AlertDialog.Builder(MainActivity.this)
+        new AlertDialog.Builder(CleanerListActivity.this)
                 .setTitle(R.string.choose_action)
                 .setView(dialogView)
                 .setPositiveButton(R.string.continue_action, new DialogInterface.OnClickListener() {
@@ -104,11 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch (rgChooseItems.getCheckedRadioButtonId()) {
             case R.id.rbOpen:
-                DocumentActivity.showDocument(MainActivity.this, selectedDocument);
+                DocumentActivity.showDocument(CleanerListActivity.this, selectedDocument);
                 break;
 
             case R.id.rbEdit:
-                DocumentActivity.editDocument(MainActivity.this, selectedDocument);
+                DocumentActivity.editDocument(CleanerListActivity.this, selectedDocument);
                 break;
 
             case R.id.rbRemove:
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             default:
-                Toast.makeText(MainActivity.this, R.string.no_item_selected, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanerListActivity.this, R.string.no_item_selected, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRemoveSucceed(ResponseRemove responseRemove) {
                 //after removable process you can perform some actions
-                Toast.makeText(MainActivity.this, R.string.decument_removed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanerListActivity.this, R.string.decument_removed, Toast.LENGTH_SHORT).show();
                 refreshList();
             }
 
@@ -142,13 +142,13 @@ public class MainActivity extends AppCompatActivity {
             public void onRemoveFailed(String errorCode, String errorMessage) {
                 //if remove process failed you can handle this situation.
                 //you can also see code and message of error
-                Toast.makeText(MainActivity.this, R.string.error_during_doc_removal, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanerListActivity.this, R.string.error_during_doc_removal, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public static void display(Context context) {
-        context.startActivity(new Intent(context, MainActivity.class));
+        context.startActivity(new Intent(context, CleanerListActivity.class));
     }
 
     @Override

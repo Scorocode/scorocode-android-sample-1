@@ -17,11 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.DocumentActivity" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activities.RegisterActivity"/>
-
+        <activity android:name=".activities.CleanerListActivity" />
+        <activity
+            android:name=".activities.DocumentActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.OrderActivity"></activity>
     </application>
 
 </manifest>
