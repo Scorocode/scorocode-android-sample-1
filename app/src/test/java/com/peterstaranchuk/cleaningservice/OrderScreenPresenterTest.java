@@ -54,6 +54,15 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
+    public void shouldSetActionBarWhenActivityCreated() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setActionBar();
+    }
+
+    @Test
     public void shouldSetPropertyTypeAndRecalculatePriceWhenPropertyTypeChangedToHouse() throws Exception {
         //when
         PropertyType propertyType = PropertyType.HOUSE;
@@ -83,6 +92,7 @@ public class OrderScreenPresenterTest {
     @Test
     public void shouldPlaceNewOrderWhenMakeOrderButtonPressed() throws Exception {
         presenter.onMakeOrderButtonClicked();
+        verify(view).showPlaceOrderDialog();
         verify(view).getBathroomsCount();
         verify(view).getBedroomsCount();
         verify(view).getSizeInSquareFoots();

@@ -71,4 +71,10 @@
     <string name="shared_prefs_key_userid">com.peterstaranchuk.cleaningservice.USERID</string>
     <string name="fieldUsername">username</string>
     <string name="cant_calculate_price">Can\'t calculate the price</string>
+    <string name="orderSending">Order place in process</string>
+    <string name="orderSentTitle">Order sent</string>
+    <string name="ok">OK</string>
+    <string name="orderSentMessage">Order successfully sent</string>
+    <string name="errorWhileSendingTitle">Error</string>
+    <string name="errorWhileSendingMessage">Error while sending process</string>
 </resources>

@@ -92,8 +92,6 @@
                 android:hint="@string/login_activity_password_repeat_edittext"
                 android:inputType="textPassword"
                 android:layout_marginBottom="8dp"/>
-
-
         </LinearLayout>
 
         <Button

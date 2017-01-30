@@ -32,4 +32,8 @@ public interface OrderScreenView {
     void errorDuringOrderSending();
 
     void refreshMakeAnOrderButtonState();
+
+    void showPlaceOrderDialog();
+
+    void setActionBar();
 }

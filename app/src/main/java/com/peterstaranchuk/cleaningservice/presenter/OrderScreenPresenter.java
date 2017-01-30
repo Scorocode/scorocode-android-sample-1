@@ -27,6 +27,7 @@ public class OrderScreenPresenter {
     public void onCreate() {
         view.setDefaultState();
         view.setOrderInfoChangedListeners();
+        view.setActionBar();
     }
 
     public void setPropertyType(PropertyType propertyType) {
@@ -93,6 +94,7 @@ public class OrderScreenPresenter {
             }
         };
 
+        view.showPlaceOrderDialog();
         model.placeOrder(view.getAddress(), view.getSizeInSquareFoots(),
                 view.getBathroomsCount(), view.getBedroomsCount(), callbackDocumentSaved);
     }

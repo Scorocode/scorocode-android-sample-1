@@ -3,7 +3,9 @@ package com.peterstaranchuk.cleaningservice.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @Inject @Named(OrderScreenActionModule.ACTION_STATE_CHANGED) Action1<CharSequence> stateChangedAction;
     @Inject @Named(OrderScreenActionModule.ACTION_SET_HOUSE_PROPERTY_TYPE) Action1<Void> actionSetHousePropertyType;
     @Inject @Named(OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE) Action1<Void> actionSetApartmentPropertyType;
+    private AlertDialog orderPlacingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,12 +132,24 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void orderSent() {
-        //TODO add logic
+        orderPlacingDialog.cancel();
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.orderSentTitle)
+                .setMessage(R.string.orderSentMessage)
+                .setPositiveButton(R.string.ok, null)
+                .show();
     }
 
     @Override
     public void errorDuringOrderSending() {
-        //TODO add logic
+        orderPlacingDialog.cancel();
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.errorWhileSendingTitle)
+                .setMessage(R.string.errorWhileSendingMessage)
+                .setPositiveButton(R.string.ok, null)
+                .show();
     }
 
     @Override
@@ -159,7 +174,38 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         }
     }
 
+    @Override
+    public void showPlaceOrderDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.orderSending))
+                .setCancelable(false)
+                .setView(R.layout.dialog_item_placing);
+
+        orderPlacingDialog = builder.create();
+        orderPlacingDialog.show();
+    }
+
+    @Override
+    public void setActionBar() {
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public static void display(Context context) {
         context.startActivity(new Intent(context, OrderActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }
