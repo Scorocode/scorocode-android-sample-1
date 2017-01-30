@@ -5,4 +5,5 @@
     <dimen name="login_activity_margin">16dp</dimen>
     <dimen name="addNewDocumentItemsMargin">16dp</dimen>
     <dimen name="controlsPadding">8dp</dimen>
+    <dimen name="customCounterElementSize">64dp</dimen>
 </resources>

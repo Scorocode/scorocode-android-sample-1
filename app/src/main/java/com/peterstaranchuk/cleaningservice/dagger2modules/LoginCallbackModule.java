@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.activities.OrderActivity;
+import com.peterstaranchuk.cleaningservice.helpers.DataStoreHelper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,6 +32,14 @@ public class LoginCallbackModule {
             public void onLoginSucceed(ResponseLogin responseLogin) {
                 //if user account exist in server (inside users collection)
                 //when login will be successful
+
+                String userName = String.valueOf(responseLogin.getResult().getUserInfo().get(context.getString(R.string.fieldUsername)));
+                String userId = String.valueOf(responseLogin.getResult().getUserInfo().getId());
+
+                DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
+                dataStoreHelper.storeUserName(userName);
+                dataStoreHelper.storeUserId(userId);
+
                 OrderActivity.display(context);
             }
 

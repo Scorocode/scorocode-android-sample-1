@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -8,107 +9,117 @@
     android:padding="16dp"
     tools:context="com.peterstaranchuk.cleaningservice.activities.OrderActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_above="@+id/btnMakeAnOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/labelStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/your_address" />
-
-        <EditText
-            android:hint="@string/enter_your_address"
-            android:id="@+id/etAddress"
-            style="@style/editTextStyle" />
-
-        <TextView
-            style="@style/labelStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/you_live_in" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvControlHouse"
-                style="@style/controlLabelStyle"
-                android:layout_weight="1"
-                android:background="@drawable/custom_counter_border"
-                android:gravity="center"
-                android:paddingBottom="@dimen/controlsPadding"
-                android:paddingTop="@dimen/controlsPadding"
-                android:text="@string/house" />
+                style="@style/labelStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/you_live_in" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvControlHouse"
+                    style="@style/controlLabelStyle"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_counter_border"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/controlsPadding"
+                    android:paddingTop="@dimen/controlsPadding"
+                    android:text="@string/house" />
+
+                <TextView
+                    android:id="@+id/tvControlApartment"
+                    style="@style/controlLabelStyle"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_counter_border"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/controlsPadding"
+                    android:paddingTop="@dimen/controlsPadding"
+                    android:text="@string/apartment" />
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/tvControlApartment"
-                style="@style/controlLabelStyle"
-                android:layout_weight="1"
-                android:background="@drawable/custom_counter_border"
-                android:gravity="center"
-                android:paddingBottom="@dimen/controlsPadding"
-                android:paddingTop="@dimen/controlsPadding"
-                android:text="@string/apartment" />
+                android:id="@+id/tvTitle"
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp"
+                android:text="@string/tell_us_about_your" />
+
+            <TextView
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp"
+                android:text="@string/amount_of_bedrooms" />
+
+            <com.peterstaranchuk.cleaningservice.custom_views.CounterView
+                android:id="@+id/cvBedroomsCounter"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+
+            <TextView
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp"
+                android:text="@string/amount_of_bathrooms" />
+
+            <com.peterstaranchuk.cleaningservice.custom_views.CounterView
+                android:id="@+id/cvBathroomsCounter"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                style="@style/labelStyle"
+                android:layout_marginTop="16dp"
+                android:text="@string/area_in_square_foots" />
+
+            <EditText
+                android:id="@+id/etSizeInSQF"
+                style="@style/editTextStyle"
+                android:layout_width="wrap_content"
+                android:hint="@string/enter_size_of_your_house_in_square_foots"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/labelStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_address" />
+
+            <EditText
+                android:id="@+id/etAddress"
+                style="@style/editTextStyle"
+                android:layout_width="wrap_content"
+                android:hint="@string/enter_your_address" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/labelStyle"
+                android:layout_marginTop="8dp"
+                android:text="@string/price_for_cleaning" />
+
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/tvTitle"
-            style="@style/labelStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/tell_us_about_your" />
-
-        <TextView
-            style="@style/labelStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/amount_of_bedrooms" />
-
-        <com.peterstaranchuk.cleaningservice.custom_views.CounterView
-            android:id="@+id/cvBedroomsCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
-
-
-        <TextView
-            style="@style/labelStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/amount_of_bathrooms" />
-
-        <com.peterstaranchuk.cleaningservice.custom_views.CounterView
-            android:id="@+id/cvBathroomsCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            style="@style/labelStyle"
-            android:layout_marginTop="16dp"
-            android:text="@string/area_in_square_foots" />
-
-        <EditText
-            android:id="@+id/etSizeInSQF"
-            android:inputType="numberDecimal"
-            style="@style/editTextStyle"
-            android:layout_width="wrap_content"
-            android:hint="@string/enter_size_of_your_house_in_square_foots" />
-
-        <TextView
-            android:id="@+id/tvPrice"
-            style="@style/labelStyle"
-            android:layout_marginTop="8dp"
-            android:text="@string/price_for_cleaning" />
-
-    </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnMakeAnOrder"
@@ -118,3 +129,4 @@
         android:text="@string/make_an_order" />
 
 </RelativeLayout>
+

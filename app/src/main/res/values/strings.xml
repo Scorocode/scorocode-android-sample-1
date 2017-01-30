@@ -60,9 +60,15 @@
     <string name="your_address">Your address:</string>
     <string name="enter_your_address">Enter your address</string>
     <string name="collectionNameOrders">orders</string>
+    <string name="userIdField">userId</string>
     <string name="addressField">address</string>
     <string name="sizeInSquareFootsField">sizeInSquareFoots</string>
     <string name="numberOfBedroomsField">numberOfBedrooms</string>
     <string name="numberOfBathroomsField">numberOfBathrooms</string>
     <string name="userNameField">userName</string>
+    <string name="shared_prefs_userinfo">com.peterstaranchuk.cleaningservice.user_info</string>
+    <string name="shared_prefs_key_username">com.peterstaranchuk.cleaningservice.USERNAME</string>
+    <string name="shared_prefs_key_userid">com.peterstaranchuk.cleaningservice.USERID</string>
+    <string name="fieldUsername">username</string>
+    <string name="cant_calculate_price">Can\'t calculate the price</string>
 </resources>

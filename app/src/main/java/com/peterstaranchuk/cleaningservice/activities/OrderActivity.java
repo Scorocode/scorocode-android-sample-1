@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.peterstaranchuk.cleaningservice.dagger2components.OrderScreenActionsC
 import com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
+import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.OrderScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 
@@ -40,6 +42,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.tvControlApartment) TextView tvControlApartment;
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.etAddress) EditText etAddress;
+    @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
 
     @BindString(R.string.price_for_cleaning) String textPriceForCleaning;
     @BindString(R.string.currency_sign) String textCurrencySign;
@@ -66,6 +69,12 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         cvBathroomsCounter.setCounterClickAction(stateChangedAction);
 
         RxTextView.textChanges(etSizeInSQF).subscribe(stateChangedAction);
+        RxTextView.textChanges(etAddress).subscribe(new Action1<CharSequence>() {
+            @Override
+            public void call(CharSequence charSequence) {
+                refreshMakeAnOrderButtonState();
+            }
+        });
         RxView.clicks(tvControlHouse).subscribe(actionSetHousePropertyType);
         RxView.clicks(tvControlApartment).subscribe(actionSetApartmentPropertyType);
     }
@@ -88,8 +97,8 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void highlightSelectedMode(int houseControlColorId, int apartmentControlColorId) {
-        tvControlApartment.setBackgroundColor(getResources().getColor(houseControlColorId));
-        tvControlHouse.setBackgroundColor(getResources().getColor(apartmentControlColorId));
+        tvControlApartment.setBackgroundResource(houseControlColorId);
+        tvControlHouse.setBackgroundResource(apartmentControlColorId);
     }
 
     @Override
@@ -130,7 +139,24 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setPrice(Double price) {
-        tvPrice.setText(textPriceForCleaning +": " + new DecimalFormat("#.##").format(price) + " " + textCurrencySign);
+        String priceText;
+
+        if(price == OrderScreenModel.WRONG_PRICE) {
+            priceText = getString(R.string.cant_calculate_price);
+        } else {
+            priceText = textPriceForCleaning + ": " + new DecimalFormat("#.##").format(price) + " " + textCurrencySign;
+        }
+        refreshMakeAnOrderButtonState();
+        tvPrice.setText(priceText);
+    }
+
+    @Override
+    public void refreshMakeAnOrderButtonState() {
+        if(!getAddress().isEmpty() && presenter.getPrice() != OrderScreenModel.WRONG_PRICE) {
+            InputHelper.enableButton(btnMakeAnOrder);
+        } else {
+            InputHelper.disableButton(btnMakeAnOrder);
+        }
     }
 
     public static void display(Context context) {

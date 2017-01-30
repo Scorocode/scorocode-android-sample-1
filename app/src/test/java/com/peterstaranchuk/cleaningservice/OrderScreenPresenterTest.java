@@ -11,6 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import ru.profit_group.scorocode_sdk.Callbacks.CallbackDocumentSaved;
+
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyDouble;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
@@ -85,6 +88,6 @@ public class OrderScreenPresenterTest {
         verify(view).getSizeInSquareFoots();
         verify(view).getAddress();
 
-        verify(model).placeOrder(anyString(), anyDouble(), anyLong(), anyLong());
+        verify(model).placeOrder(anyString(), anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
     }
 }

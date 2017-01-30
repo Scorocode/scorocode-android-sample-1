@@ -15,7 +15,7 @@ public interface OrderScreenView {
 
     void changeTitle();
 
-    void highlightSelectedMode(int houseControlColorId, int apartmentControlColorId);
+    void highlightSelectedMode(int houseControlDrawableId, int apartmentControlDrawableId);
 
     long getBedroomsCount();
 
@@ -30,4 +30,6 @@ public interface OrderScreenView {
     void orderSent();
 
     void errorDuringOrderSending();
+
+    void refreshMakeAnOrderButtonState();
 }

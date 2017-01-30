@@ -23,6 +23,7 @@ public class FieldHelper {
 
     //orders collection field;
     private String userName;
+    private String userId;
     private String address;
     private String sizeInSquareFoots;
     private String numberOfBedrooms;
@@ -34,6 +35,7 @@ public class FieldHelper {
     }
 
     private void setOrdersCollectionsFields(Context context) {
+        this.userId = context.getString(R.string.userIdField);
         this.address = context.getString(R.string.addressField);
         this.sizeInSquareFoots = context.getString(R.string.sizeInSquareFootsField);
         this.numberOfBedrooms = context.getString(R.string.numberOfBedroomsField);
@@ -85,6 +87,11 @@ public class FieldHelper {
     @NonNull
     public String userNameField() {
         return userName;
+    }
+
+    @NonNull
+    public String userIdField() {
+        return userId;
     }
 
     @NonNull

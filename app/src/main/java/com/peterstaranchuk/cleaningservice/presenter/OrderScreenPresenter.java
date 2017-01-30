@@ -1,5 +1,6 @@
 package com.peterstaranchuk.cleaningservice.presenter;
 
+import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
@@ -15,6 +16,7 @@ public class OrderScreenPresenter {
     private OrderScreenView view;
     private OrderScreenModel model;
     private PropertyType propertyType;
+    private double price;
 
     public OrderScreenPresenter(OrderScreenView view, OrderScreenModel model) {
         this.view = view;
@@ -29,27 +31,26 @@ public class OrderScreenPresenter {
 
     public void setPropertyType(PropertyType propertyType) {
         this.propertyType = propertyType;
-        view.highlightSelectedMode(getHouseControlColor(), getApartmentControlColor());
+        view.highlightSelectedMode(getHouseControlDrawable(), getApartmentControlDrawable());
         view.changeTitle();
 
         recalculatePrice();
     }
 
     private void recalculatePrice() {
-        Double price = model.getPrice(getPropertyType(), view.getSizeInSquareFoots(), view.getBedroomsCount(), view.getBathroomsCount());
-        view.setPrice(price);
+        view.setPrice(getPrice());
     }
 
-    private int getApartmentControlColor() {
-        return getPropertyType().equals(PropertyType.APARTMENT)? android.R.color.white : android.R.color.darker_gray;
+    private int getApartmentControlDrawable() {
+        return getPropertyType().equals(PropertyType.APARTMENT)? R.drawable.custom_counter_border : R.drawable.custom_counter_border_pressed;
     }
 
-    private int getHouseControlColor() {
-        return getPropertyType().equals(PropertyType.HOUSE)? android.R.color.white : android.R.color.darker_gray;
+    private int getHouseControlDrawable() {
+        return getPropertyType().equals(PropertyType.HOUSE)? R.drawable.custom_counter_border : R.drawable.custom_counter_border_pressed;
     }
 
     public PropertyType getPropertyType() {
-        return propertyType == null? propertyType.HOUSE : propertyType;
+        return propertyType == null? PropertyType.HOUSE : propertyType;
     }
 
     public Action1<CharSequence> getStateChangedAction() {
@@ -94,5 +95,10 @@ public class OrderScreenPresenter {
 
         model.placeOrder(view.getAddress(), view.getSizeInSquareFoots(),
                 view.getBathroomsCount(), view.getBedroomsCount(), callbackDocumentSaved);
+    }
+
+    public double getPrice() {
+        this.price = model.getPrice(getPropertyType(), view.getSizeInSquareFoots(), view.getBedroomsCount(), view.getBathroomsCount());
+        return this.price;
     }
 }

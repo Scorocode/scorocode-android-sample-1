@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
+import com.peterstaranchuk.cleaningservice.helpers.DataStoreHelper;
 import com.peterstaranchuk.cleaningservice.helpers.FieldHelper;
 
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackDocumentSaved;
@@ -16,6 +17,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.Document;
 public class OrderScreenModel {
     public static final int PRICE_ADDITIONAL_ROOM = 12;
     public static final double PRICE_FOR_SQF = 0.15;
+    public static final double WRONG_PRICE = -1d;
 
     private Context context;
 
@@ -23,7 +25,11 @@ public class OrderScreenModel {
         this.context = context;
     }
 
-    public Double getPrice(PropertyType propertyType, Double sizeInSquareFoots, long bedroomsCount, long bathroomsCount) {
+    public double getPrice(PropertyType propertyType, Double sizeInSquareFoots, long bedroomsCount, long bathroomsCount) {
+        if(sizeInSquareFoots == 0 || bedroomsCount == 0 || bathroomsCount == 0) {
+            return WRONG_PRICE;
+        }
+
         double price = PRICE_FOR_SQF * sizeInSquareFoots + PRICE_ADDITIONAL_ROOM * (bedroomsCount + bathroomsCount);
         if(propertyType.equals(PropertyType.HOUSE)) {
             price *= 1.15; //if it is house we increase price for 15%
@@ -33,12 +39,15 @@ public class OrderScreenModel {
     }
 
     public void placeOrder(String address, double sizeInSquareFoots, long bathroomsCount, long bedroomsCount, CallbackDocumentSaved callbackDocumentSaved) {
-            //TODO getUserName;
-        String userName = "add username logic";
+        DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
+
+        String userId = dataStoreHelper.getUserId();
+        String userName = dataStoreHelper.getUserName();
 
         Document document = new Document(context.getString(R.string.collectionNameOrders));
 
         FieldHelper fieldHelper = new FieldHelper(context);
+        document.setField(fieldHelper.userIdField(), userId);
         document.setField(fieldHelper.userNameField(), userName);
         document.setField(fieldHelper.addressField(), address);
         document.setField(fieldHelper.sizeInSquareFootsField(), sizeInSquareFoots);

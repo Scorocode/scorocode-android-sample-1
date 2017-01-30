@@ -45,8 +45,8 @@ public class CounterView extends LinearLayout {
     @OnClick(R.id.llLeft)
     public void onCountDownButtonClicked() {
         Long newAmount = getCurrentCount() - 1L;
-        if(newAmount < 0) {
-            newAmount = 0L;
+        if(newAmount < 1) {
+            newAmount = 1L;
         }
 
         String newAmountAsString = String.valueOf(newAmount);
