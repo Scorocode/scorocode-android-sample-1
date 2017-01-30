@@ -63,6 +63,15 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
+    public void shouldSetMenuWhenActivityCreated() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setSideMenu();
+    }
+
+    @Test
     public void shouldSetPropertyTypeAndRecalculatePriceWhenPropertyTypeChangedToHouse() throws Exception {
         //when
         PropertyType propertyType = PropertyType.HOUSE;

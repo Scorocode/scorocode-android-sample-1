@@ -7,8 +7,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -24,6 +26,8 @@ import com.peterstaranchuk.cleaningservice.presenter.OrderScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -45,6 +49,8 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.etAddress) EditText etAddress;
     @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
+//    @BindView(R.id.drawerLayout) DrawerLayout drawerLayout;
+    @BindView(R.id.lvItems) ListView lvDrawerItems;
 
     @BindString(R.string.price_for_cleaning) String textPriceForCleaning;
     @BindString(R.string.currency_sign) String textCurrencySign;
@@ -190,6 +196,18 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public void setSideMenu() {
+        List<String> list = new ArrayList<>();
+        list.add("item");
+        list.add("item");
+        list.add("item");
+        list.add("item");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        lvDrawerItems.setAdapter(arrayAdapter);
     }
 
     public static void display(Context context) {

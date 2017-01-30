@@ -28,6 +28,7 @@ public class OrderScreenPresenter {
         view.setDefaultState();
         view.setOrderInfoChangedListeners();
         view.setActionBar();
+        view.setSideMenu();
     }
 
     public void setPropertyType(PropertyType propertyType) {

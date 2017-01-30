@@ -36,4 +36,6 @@ public interface OrderScreenView {
     void showPlaceOrderDialog();
 
     void setActionBar();
+
+    void setSideMenu();
 }
