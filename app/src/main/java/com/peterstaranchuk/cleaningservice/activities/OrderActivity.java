@@ -1,6 +1,7 @@
 package com.peterstaranchuk.cleaningservice.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -93,8 +94,8 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setDefaultState() {
-        presenter.setPropertyType(PropertyType.HOUSE);
         etSizeInSQF.setText(String.valueOf(1000));
+        presenter.setPropertyType(PropertyType.HOUSE);
     }
 
     @Override
@@ -120,8 +121,13 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public double getSizeInSquareFoots() {
-        String input = InputHelper.getStringFrom(etSizeInSQF);
-        return input.isEmpty()? 0d : Long.valueOf(input);
+        try {
+            String input = InputHelper.getStringFrom(etSizeInSQF);
+            return input.isEmpty()? 0d : Long.valueOf(input);
+        } catch (NumberFormatException exception) {
+            exception.printStackTrace();
+            return 0d;
+        }
     }
 
     @Override
@@ -141,7 +147,12 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.orderSentTitle)
                 .setMessage(R.string.orderSentMessage)
-                .setPositiveButton(R.string.ok, null)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        OrdersListActivity.display(getContext());
+                    }
+                })
                 .show();
     }
 
@@ -163,10 +174,14 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         if(price == OrderScreenModel.WRONG_PRICE) {
             priceText = getString(R.string.cant_calculate_price);
         } else {
-            priceText = textPriceForCleaning + ": " + new DecimalFormat("#.##").format(price) + " " + textCurrencySign;
+            String priceString = new DecimalFormat("#.##").format(price);
+            priceText = getString(R.string.make_an_order) + " (" + priceString  + textCurrencySign +")";
         }
+
         refreshMakeAnOrderButtonState();
-        tvPrice.setText(priceText);
+
+        btnMakeAnOrder.setText(priceText);
+//        tvPrice.setText(priceText);
     }
 
     @Override

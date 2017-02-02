@@ -56,35 +56,60 @@
 
 
                 <TextView
+                    android:layout_gravity="center_horizontal"
                     android:id="@+id/tvTitle"
                     style="@style/labelStyle"
                     android:layout_marginTop="16dp"
                     android:text="@string/tell_us_about_your" />
 
-                <TextView
-                    style="@style/labelStyle"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/amount_of_bedrooms" />
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <com.peterstaranchuk.cleaningservice.custom_views.CounterView
-                    android:id="@+id/cvBedroomsCounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp" />
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
+                        <TextView
+                            style="@style/labelStyle"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/amount_of_bedrooms" />
 
-                <TextView
-                    style="@style/labelStyle"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/amount_of_bathrooms" />
+                        <com.peterstaranchuk.cleaningservice.custom_views.CounterView
+                            android:id="@+id/cvBedroomsCounter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="4dp" />
 
-                <com.peterstaranchuk.cleaningservice.custom_views.CounterView
-                    android:id="@+id/cvBathroomsCounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/labelStyle"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/amount_of_bathrooms" />
+
+                        <com.peterstaranchuk.cleaningservice.custom_views.CounterView
+                            android:id="@+id/cvBathroomsCounter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="4dp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
                 <TextView
                     style="@style/labelStyle"
@@ -107,10 +132,10 @@
                 <EditText
                     android:id="@+id/etAddress"
                     style="@style/editTextStyle"
-                    android:layout_width="wrap_content"
                     android:hint="@string/enter_your_address" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvPrice"
                     style="@style/labelStyle"
                     android:layout_marginTop="8dp"

@@ -51,8 +51,8 @@
     <string name="tell_us_about_your">Tell us about your</string>
     <string name="house">House</string>
     <string name="apartment">Apartment</string>
-    <string name="amount_of_bedrooms">Amount of bedrooms:</string>
-    <string name="amount_of_bathrooms">Amount of bathrooms:</string>
+    <string name="amount_of_bedrooms">Amount of\nbedrooms:</string>
+    <string name="amount_of_bathrooms">Amount of\nbathrooms:</string>
     <string name="area_in_square_foots">Area in Square foots:</string>
     <string name="enter_size_of_your_house_in_square_foots">Enter size of your house in square foots</string>
     <string name="make_an_order">Make an order</string>

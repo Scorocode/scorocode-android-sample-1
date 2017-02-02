@@ -36,7 +36,7 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
-    public void shouldInitDefaultStatesWhenActivityCreated() throws Exception {
+    public void should_Init_Default_States_When_Activity_Created() throws Exception {
         //when
         presenter.onCreate();
 
@@ -45,7 +45,7 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
-    public void shouldSetListenersWhenActivityCreated() throws Exception {
+    public void should_Set_Listeners_When_Activity_Created() throws Exception {
         //when
         presenter.onCreate();
 
@@ -54,7 +54,7 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
-    public void shouldSetActionBarWhenActivityCreated() throws Exception {
+    public void should_Set_Action_Bar_When_Activity_Created() throws Exception {
         //when
         presenter.onCreate();
 
@@ -63,7 +63,7 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
-    public void shouldSetMenuWhenActivityCreated() throws Exception {
+    public void should_Set_Side_Menu_When_Activity_Created() throws Exception {
         //when
         presenter.onCreate();
 
@@ -72,7 +72,7 @@ public class OrderScreenPresenterTest {
     }
 
     @Test
-    public void shouldSetPropertyTypeAndRecalculatePriceWhenPropertyTypeChangedToHouse() throws Exception {
+    public void should_Set_Property_Type_And_Recalculate_Price_When_Property_Type_Changed_To_House() throws Exception {
         //when
         PropertyType propertyType = PropertyType.HOUSE;
         presenter.setPropertyType(propertyType);

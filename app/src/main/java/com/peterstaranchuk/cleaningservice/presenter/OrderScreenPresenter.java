@@ -21,7 +21,6 @@ public class OrderScreenPresenter {
     public OrderScreenPresenter(OrderScreenView view, OrderScreenModel model) {
         this.view = view;
         this.model = model;
-        propertyType = PropertyType.HOUSE;
     }
 
     public void onCreate() {
@@ -52,7 +51,7 @@ public class OrderScreenPresenter {
     }
 
     public PropertyType getPropertyType() {
-        return propertyType == null? PropertyType.HOUSE : propertyType;
+        return propertyType;
     }
 
     public Action1<CharSequence> getStateChangedAction() {
