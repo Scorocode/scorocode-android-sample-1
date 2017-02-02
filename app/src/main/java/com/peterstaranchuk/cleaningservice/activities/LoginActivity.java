@@ -1,6 +1,7 @@
 package com.peterstaranchuk.cleaningservice.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -97,5 +98,9 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     public void setItemsVisibility() {
         ButterKnife.findById(this, R.id.tvTitle).setVisibility(View.VISIBLE);
         ButterKnife.findById(this, R.id.ivPicture).setVisibility(View.VISIBLE);
+    }
+
+    public static void display(Context context) {
+        context.startActivity(new Intent(context, LoginActivity.class));
     }
 }

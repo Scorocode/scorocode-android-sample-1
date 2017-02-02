@@ -104,11 +104,11 @@ public class CleanerListActivity extends AppCompatActivity {
 
         switch (rgChooseItems.getCheckedRadioButtonId()) {
             case R.id.rbOpen:
-                DocumentActivity.showDocument(CleanerListActivity.this, selectedDocument);
+                CleanersActivity.showDocument(CleanerListActivity.this, selectedDocument);
                 break;
 
             case R.id.rbEdit:
-                DocumentActivity.editDocument(CleanerListActivity.this, selectedDocument);
+                CleanersActivity.editDocument(CleanerListActivity.this, selectedDocument);
                 break;
 
             case R.id.rbRemove:
@@ -162,7 +162,7 @@ public class CleanerListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addDocument:
-                DocumentActivity.createNewDocument(this);
+                CleanersActivity.createNewDocument(this);
                 return true;
 
             case R.id.refreshList:

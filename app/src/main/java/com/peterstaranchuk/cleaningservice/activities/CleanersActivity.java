@@ -24,7 +24,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.Document;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 import rx.functions.Action1;
 
-public class DocumentActivity extends AppCompatActivity {
+public class CleanersActivity extends AppCompatActivity {
 
     @BindView(R.id.etDocumentId) EditText etDocumentId;
     @BindView(R.id.etDocumentName) EditText etDocumentName;
@@ -124,7 +124,7 @@ public class DocumentActivity extends AppCompatActivity {
         document.getDocumentById(getDocumentInfo().getId(), new CallbackGetDocumentById() {
             @Override
             public void onDocumentFound(DocumentInfo documentInfo1) {
-                FieldHelper fieldHelper = new FieldHelper(DocumentActivity.this);
+                FieldHelper fieldHelper = new FieldHelper(CleanersActivity.this);
                 //3.when document found on server you can update it's field's info
                 //you can use any methods from Update class for this purposes
                 document.updateDocument()
@@ -137,14 +137,14 @@ public class DocumentActivity extends AppCompatActivity {
                     @Override
                     public void onDocumentSaved() {
                         //you can do any actions after document saved
-                        Toast.makeText(DocumentActivity.this, R.string.document_saved, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CleanersActivity.this, R.string.document_saved, Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
                     @Override
                     public void onDocumentSaveFailed(String errorCode, String errorMessage) {
                         //you can handle error if document was not saved. You can also see code and message of error.
-                        Toast.makeText(DocumentActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CleanersActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -153,7 +153,7 @@ public class DocumentActivity extends AppCompatActivity {
             @Override
             public void onDocumentNotFound(String errorCode, String errorMessage) {
                 //if document not found you can handle error and see it's code and message
-                Toast.makeText(DocumentActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();                                }
+                Toast.makeText(CleanersActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();                                }
         });
     }
 
@@ -195,13 +195,13 @@ public class DocumentActivity extends AppCompatActivity {
         document.saveDocument(new CallbackDocumentSaved() {
             @Override
             public void onDocumentSaved() {
-                Toast.makeText(DocumentActivity.this, R.string.document_saved, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanersActivity.this, R.string.document_saved, Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onDocumentSaveFailed(String errorCode, String errorMessage) {
-                Toast.makeText(DocumentActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CleanersActivity.this, R.string.error_during_document_saving, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -219,7 +219,7 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     private static void display(Context context, Mode mode, DocumentInfo documentInfo) {
-        Intent intent = new Intent(context, DocumentActivity.class);
+        Intent intent = new Intent(context, CleanersActivity.class);
         intent.putExtra(EXTRA_DOCUMENT_INFO, documentInfo);
         intent.putExtra(EXTRA_DOCUMENT_MODE, mode);
         context.startActivity(intent);

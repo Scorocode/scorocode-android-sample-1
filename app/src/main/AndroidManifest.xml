@@ -19,10 +19,11 @@
         </activity>
         <activity android:name=".activities.CleanerListActivity" />
         <activity
-            android:name=".activities.DocumentActivity"
+            android:name=".activities.CleanersActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.OrderActivity"></activity>
+        <activity android:name=".activities.OrderActivity" />
+        <activity android:name=".activities.OrdersListActivity"></activity>
     </application>
 
 </manifest>

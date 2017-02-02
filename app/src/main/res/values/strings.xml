@@ -77,4 +77,9 @@
     <string name="orderSentMessage">Order successfully sent</string>
     <string name="errorWhileSendingTitle">Error</string>
     <string name="errorWhileSendingMessage">Error while sending process</string>
+    <string name="orders">Orders</string>
+    <string name="menu_item_cleaners">Cleaners</string>
+    <string name="menu_item_logout">Logout</string>
+    <string name="menu_item_feedback">Feedback</string>
+    <string name="menu_item_send">Send</string>
 </resources>
