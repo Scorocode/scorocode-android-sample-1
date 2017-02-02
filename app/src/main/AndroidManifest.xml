@@ -23,7 +23,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.OrderActivity" />
-        <activity android:name=".activities.OrdersListActivity"></activity>
+        <activity android:name=".activities.OrdersListActivity" />
+        <activity android:name=".activities.CleanerInfoActivity"></activity>
     </application>
 
 </manifest>

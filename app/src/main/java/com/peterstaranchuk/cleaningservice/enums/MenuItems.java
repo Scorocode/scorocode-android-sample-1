@@ -9,10 +9,10 @@ import com.peterstaranchuk.cleaningservice.R;
  */
 
 public enum MenuItems {
-    ORDERS(R.string.orders),
-    CLEANERS(R.string.cleaners),
+    ORDERS(R.string.menu_item_orders),
+    CLEANERS(R.string.menu_item_cleaners),
     FEEDBACK(R.string.feedback),
-    LOGOUT(R.string.logout);
+    LOGOUT(R.string.menu_item_logout);
 
     private int menuItemNameId;
 

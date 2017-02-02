@@ -1,154 +1,64 @@
 package com.peterstaranchuk.cleaningservice.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.adapters.CleanersAdapter;
+import com.peterstaranchuk.cleaningservice.model.CleanersListScreenModel;
+import com.peterstaranchuk.cleaningservice.presenter.CleanersListScreenPresenter;
+import com.peterstaranchuk.cleaningservice.view.CleanersListScreenView;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ru.profit_group.scorocode_sdk.Callbacks.CallbackFindDocument;
-import ru.profit_group.scorocode_sdk.Callbacks.CallbackRemoveDocument;
-import ru.profit_group.scorocode_sdk.Responses.data.ResponseRemove;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
-import ru.profit_group.scorocode_sdk.scorocode_objects.Query;
 
-public class CleanerListActivity extends AppCompatActivity {
+public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
     @BindView(R.id.lvDocuments) ListView lvDocuments;
+    private CleanersListScreenPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
+
+        presenter = new CleanersListScreenPresenter(this, new CleanersListScreenModel(this));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        refreshList();
+        presenter.refreshList();
     }
 
-    private void refreshList() {
-        //To get all documents from collection you should:
-        //1.Create new object of Query class
-        Query query = new Query(getString(R.string.collectionNameCleaners));
-
-        //2.Don't specify any criteria of search (so it will searching for all documents).
-        //3.Use findDocument() method of Query class
-        query.findDocuments(new CallbackFindDocument() {
+    @Override
+    public void refreshCleanersList(final List<DocumentInfo> documentInfos) {
+        CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_document);
+        lvDocuments.setAdapter(adapter);
+        lvDocuments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onDocumentFound(final List<DocumentInfo> documentInfos) {
-                //As a result you have list of DocumentInfo objects
-                //All information about documents stored in this class
-                CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_document);
-                lvDocuments.setAdapter(adapter);
-                lvDocuments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        showChooseActionDialog(documentInfos, position);
-                    }
-                });
-            }
-
-            @Override
-            public void onDocumentNotFound(String errorCode, String errorMessage) {
-                //You can handle case if no documents were found.
-                //You can also see error code and message if searching process was failed
-                Toast.makeText(CleanerListActivity.this, R.string.errorDuringDocumentLoading, Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CleanerInfoActivity.display(CleanerListActivity.this, documentInfos.get(position));
             }
         });
     }
 
-    private void showChooseActionDialog(final List<DocumentInfo> documentInfos, final int position) {
-        final View dialogView = LayoutInflater.from(CleanerListActivity.this).inflate(R.layout.item_action_view, null);
-
-        new AlertDialog.Builder(CleanerListActivity.this)
-                .setTitle(R.string.choose_action)
-                .setView(dialogView)
-                .setPositiveButton(R.string.continue_action, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                performActionWithDocument(dialogView, documentInfos, position);
-                            }
-                        }
-                )
-                .setNegativeButton(R.string.close_action, null)
-                .setCancelable(false)
-                .show();
-    }
-
-    private void performActionWithDocument(View dialogView, List<DocumentInfo> documentInfos, int position) {
-        //All information about document's fields and id's stored in
-        //document info class
-
-        final RadioGroup rgChooseItems = ButterKnife.findById(dialogView, R.id.rgChooseItems);
-        DocumentInfo selectedDocument = documentInfos.get(position);
-
-        switch (rgChooseItems.getCheckedRadioButtonId()) {
-            case R.id.rbOpen:
-                CleanersActivity.showDocument(CleanerListActivity.this, selectedDocument);
-                break;
-
-            case R.id.rbEdit:
-                CleanersActivity.editDocument(CleanerListActivity.this, selectedDocument);
-                break;
-
-            case R.id.rbRemove:
-                removeSelectedDocument(selectedDocument);
-                break;
-
-            default:
-                Toast.makeText(CleanerListActivity.this, R.string.no_item_selected, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void removeSelectedDocument(DocumentInfo clickedDocument) {
-        //To remove document from server (from collection) you should:
-        //1. create new Query class. You should also specify collection name in constructor
-        Query query = new Query(getString(R.string.collectionNameCleaners));
-
-        //2. find document in collection using one of Query methods
-        //(in this case we searching for document with particular id)
-        query.equalTo("_id", clickedDocument.getId());
-
-        //3. Use removeDocument() method of Query class
-        query.removeDocument(new CallbackRemoveDocument() {
-            @Override
-            public void onRemoveSucceed(ResponseRemove responseRemove) {
-                //after removable process you can perform some actions
-                Toast.makeText(CleanerListActivity.this, R.string.decument_removed, Toast.LENGTH_SHORT).show();
-                refreshList();
-            }
-
-            @Override
-            public void onRemoveFailed(String errorCode, String errorMessage) {
-                //if remove process failed you can handle this situation.
-                //you can also see code and message of error
-                Toast.makeText(CleanerListActivity.this, R.string.error_during_doc_removal, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public static void display(Context context) {
-        context.startActivity(new Intent(context, CleanerListActivity.class));
+    @Override
+    public void showErrorToast(int errorStringId) {
+        Toast.makeText(this, errorStringId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -161,16 +71,17 @@ public class CleanerListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.addDocument:
-                CleanersActivity.createNewDocument(this);
-                return true;
 
             case R.id.refreshList:
-                refreshList();
+                presenter.refreshList();
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public static void display(Context context) {
+        context.startActivity(new Intent(context, CleanerListActivity.class));
     }
 }
