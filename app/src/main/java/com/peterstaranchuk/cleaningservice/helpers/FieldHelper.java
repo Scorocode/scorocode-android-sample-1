@@ -28,6 +28,8 @@ public class FieldHelper {
     private String sizeInSquareFoots;
     private String numberOfBedrooms;
     private String numberOfBathrooms;
+    private String createdAt;
+    private String orderStatus;
 
     public FieldHelper(Context context) {
         setCleanersCollectionFields(context);
@@ -41,6 +43,8 @@ public class FieldHelper {
         this.numberOfBedrooms = context.getString(R.string.numberOfBedroomsField);
         this.numberOfBathrooms = context.getString(R.string.numberOfBathroomsField);
         this.userName = context.getString(R.string.userNameField);
+        this.createdAt = context.getString(R.string.createdAtField);
+        this.orderStatus = context.getString(R.string.orderStatusField);
     }
 
     private void setCleanersCollectionFields(Context context) {
@@ -132,5 +136,35 @@ public class FieldHelper {
 
         Object cleanerDescription = documentInfo.get(descriptionField());
         return cleanerDescription == null? "" : cleanerDescription.toString();
+    }
+
+    @NonNull
+    public String getPlacedAt(DocumentInfo documentInfo) {
+        if(documentInfo == null) {
+            return "";
+        }
+
+        Object placedAt = documentInfo.get(createdAtField());
+        return placedAt == null? "" : placedAt.toString();
+    }
+
+    @NonNull
+    public String getOrderStatus(DocumentInfo documentInfo) {
+        if(documentInfo == null) {
+            return "";
+        }
+
+        Object orderStatus = documentInfo.get(orderStatusField());
+        return orderStatus == null? "" : orderStatus.toString();
+    }
+
+    @NonNull
+    public String createdAtField() {
+        return createdAt;
+    }
+
+    @NonNull
+    public String orderStatusField() {
+        return orderStatus;
     }
 }

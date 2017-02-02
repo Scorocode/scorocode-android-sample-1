@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:orientation="vertical"
-    tools:context="com.peterstaranchuk.scorocodetemplate.activities.ListActivity">
+    android:orientation="vertical">
 
     <TextView
-        android:text="@string/documents"
+        android:text="@string/cleaners"
         style="@style/labelStyle" />
 
     <ListView
-        android:id="@+id/lvDocuments"
+        android:id="@+id/lvCleaners"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
