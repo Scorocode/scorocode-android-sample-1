@@ -12,4 +12,6 @@ public interface CleanerInfoScreenView {
     void setCleanerInfo(DocumentInfo cleanerInfo);
 
     Intent getIntent();
+
+    void setActionBar();
 }

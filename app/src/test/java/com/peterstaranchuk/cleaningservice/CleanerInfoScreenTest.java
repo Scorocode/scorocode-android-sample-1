@@ -40,4 +40,11 @@ public class CleanerInfoScreenTest {
         verify(model).getCleanerInfo(any(Intent.class));
         verify(view).setCleanerInfo(any(DocumentInfo.class));
     }
+
+    @Test
+    public void shouldInitActionBarWhenScreenStarted() throws Exception {
+        presenter.onCreate();
+
+        verify(view).setActionBar();
+    }
 }

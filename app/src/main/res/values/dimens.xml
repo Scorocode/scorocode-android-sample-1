@@ -6,4 +6,5 @@
     <dimen name="addNewDocumentItemsMargin">16dp</dimen>
     <dimen name="controlsPadding">8dp</dimen>
     <dimen name="customCounterElementSize">64dp</dimen>
+    <dimen name="cleaner_avatar_size">120dp</dimen>
 </resources>

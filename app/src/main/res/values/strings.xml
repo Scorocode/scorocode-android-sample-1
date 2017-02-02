@@ -82,4 +82,6 @@
     <string name="menu_item_logout">Logout</string>
     <string name="feedback">Feedback</string>
     <string name="send">Send</string>
+    <string name="name">Name:</string>
+    <string name="description">Description:</string>
 </resources>
