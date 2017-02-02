@@ -28,4 +28,5 @@ public interface RegisterScreenView {
 
     Context getContext();
 
+    void setActionBar();
 }

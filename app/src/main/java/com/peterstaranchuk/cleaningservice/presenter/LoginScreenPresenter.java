@@ -30,6 +30,7 @@ public class LoginScreenPresenter {
     }
 
     public void onCreateScreen() {
+        model.clearUserData();
         view.disableLoginButton();
         view.setDataListeners();
         view.setItemsVisibility();

@@ -31,6 +31,15 @@ public class CleanersListScreenPresenterTest {
     }
 
     @Test
+    public void shouldSetActionBarWhenScreenStarted() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setActionBar();
+    }
+
+    @Test
     public void shouldRefreshCleanersListWhenActivityResumed() throws Exception {
         //when
         presenter.refreshList();

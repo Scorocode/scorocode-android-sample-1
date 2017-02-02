@@ -72,4 +72,13 @@ public class LoginScreenPresenterTest {
         //than
         verify(view).openRegisterScreen();
     }
+
+    @Test
+    public void shouldClearUserInfoWhenScreenStarted() throws Exception {
+        //when
+        presenter.onCreateScreen();
+
+        //than
+        verify(model).clearUserData();
+    }
 }

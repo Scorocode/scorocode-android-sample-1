@@ -36,4 +36,8 @@ public class CleanersListScreenPresenter {
         });
 
     }
+
+    public void onCreate() {
+        view.setActionBar();
+    }
 }

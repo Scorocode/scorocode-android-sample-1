@@ -19,6 +19,7 @@ import com.peterstaranchuk.cleaningservice.custom_views.CounterView;
 import com.peterstaranchuk.cleaningservice.dagger2components.OrderScreenActionsComponent;
 import com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
+import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservice.helpers.SideMenuHelper;
 import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
@@ -191,9 +192,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setActionBar() {
-        if(getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+        ActionBarHelper.setHomeButton(getSupportActionBar());
     }
 
     @Override
@@ -215,6 +214,5 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 }

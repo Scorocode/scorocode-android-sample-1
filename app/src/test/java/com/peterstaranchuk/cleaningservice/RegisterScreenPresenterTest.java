@@ -30,6 +30,15 @@ public class RegisterScreenPresenterTest {
     }
 
     @Test
+    public void shouldSetActionBarWhenScreenCreated() throws Exception {
+        //when
+        presenter.onCreateScreen();
+
+        //than
+        verify(view).setActionBar();
+    }
+
+    @Test
     public void shouldSetDataListenersWhenActivityCreated() throws Exception {
         //when
         presenter.onCreateScreen();

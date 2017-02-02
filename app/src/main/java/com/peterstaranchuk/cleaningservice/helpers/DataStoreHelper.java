@@ -31,6 +31,11 @@ public class DataStoreHelper {
                 .apply();
     }
 
+    public void clearUserData() {
+        storeUserId("");
+        storeUserName("");
+    }
+
     @NonNull
     public String getUserName() {
         return sharedPreferences.getString(context.getString(R.string.shared_prefs_key_username), "");

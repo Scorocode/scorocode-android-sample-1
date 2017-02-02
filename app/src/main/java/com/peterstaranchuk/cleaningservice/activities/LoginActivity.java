@@ -103,4 +103,5 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     public static void display(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
     }
+
 }

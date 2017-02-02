@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.adapters.CleanersAdapter;
+import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservice.model.CleanersListScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.CleanersListScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.CleanersListScreenView;
@@ -36,6 +37,7 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
         ButterKnife.bind(this);
 
         presenter = new CleanersListScreenPresenter(this, new CleanersListScreenModel(this));
+        presenter.onCreate();
     }
 
     @Override
@@ -62,6 +64,11 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     }
 
     @Override
+    public void setActionBar() {
+        ActionBarHelper.setHomeButton(getSupportActionBar());
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_activity_menu, menu);
@@ -71,6 +78,10 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case android.R.id.home:
+                this.finish();
+                return true;
 
             case R.id.refreshList:
                 presenter.refreshList();

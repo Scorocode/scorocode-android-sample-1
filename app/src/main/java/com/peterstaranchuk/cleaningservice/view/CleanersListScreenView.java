@@ -12,4 +12,6 @@ public interface CleanersListScreenView {
     void refreshCleanersList(List<DocumentInfo> documentInfos);
 
     void showErrorToast(int errorStringId);
+
+    void setActionBar();
 }

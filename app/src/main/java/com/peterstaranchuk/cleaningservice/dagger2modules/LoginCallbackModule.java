@@ -1,6 +1,7 @@
 package com.peterstaranchuk.cleaningservice.dagger2modules;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
@@ -33,12 +34,9 @@ public class LoginCallbackModule {
                 //if user account exist in server (inside users collection)
                 //when login will be successful
 
-                String userName = String.valueOf(responseLogin.getResult().getUserInfo().get(context.getString(R.string.fieldUsername)));
-                String userId = String.valueOf(responseLogin.getResult().getUserInfo().getId());
-
                 DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
-                dataStoreHelper.storeUserName(userName);
-                dataStoreHelper.storeUserId(userId);
+                dataStoreHelper.storeUserName(getUserName(responseLogin));
+                dataStoreHelper.storeUserId(getUserId(responseLogin));
 
                 OrderActivity.display(context);
             }
@@ -50,6 +48,18 @@ public class LoginCallbackModule {
                 Toast.makeText(context, context.getString(R.string.cant_login) + "\n" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         };
+    }
+
+    @NonNull
+    private String getUserId(ResponseLogin responseLogin) {
+        String userId = String.valueOf(responseLogin.getResult().getUserInfo().getId());
+        return userId != null? userId : "";
+    }
+
+    @NonNull
+    private String getUserName(ResponseLogin responseLogin) {
+        String userName = String.valueOf(responseLogin.getResult().getUserInfo().get(context.getString(R.string.fieldUsername)));
+        return userName != null? userName : "";
     }
 
 }

@@ -37,6 +37,7 @@ public class RegisterScreenPresenter {
     public void onCreateScreen() {
         view.setDataListeners();
         view.setInitialScreenState();
+        view.setActionBar();
     }
 
     public void onRegisterButtonPressed() {

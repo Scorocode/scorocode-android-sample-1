@@ -5,6 +5,7 @@ import android.content.Context;
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.dagger2components.DaggerLoginModelComponent;
 import com.peterstaranchuk.cleaningservice.dagger2modules.LoginCallbackModule;
+import com.peterstaranchuk.cleaningservice.helpers.DataStoreHelper;
 
 import javax.inject.Inject;
 
@@ -16,8 +17,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.User;
  */
 
 public class LoginScreenModel {
-    @Inject
-    CallbackLoginUser callbackLoginUser;
+    @Inject CallbackLoginUser callbackLoginUser;
 
     private Context context;
 
@@ -45,5 +45,9 @@ public class LoginScreenModel {
 
     public void handleError() {
         callbackLoginUser.onLoginFailed("", context.getString(R.string.wrong_data_error));
+    }
+
+    public void clearUserData() {
+        new DataStoreHelper(context).clearUserData();
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.dagger2components.RegisterScreenMVPComponent;
+import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
 import com.peterstaranchuk.cleaningservice.presenter.RegisterScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.RegisterScreenView;
@@ -56,6 +58,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void setActionBar() {
+        ActionBarHelper.setHomeButton(getSupportActionBar());
     }
 
     @OnClick(R.id.btnRegister)
@@ -108,5 +115,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     public static void display(Context context) {
         context.startActivity(new Intent(context, RegisterActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
