@@ -48,8 +48,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.etAddress) EditText etAddress;
     @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
-//    @BindView(R.id.drawerLayout) DrawerLayout drawerLayout;
-    @BindView(R.id.lvItems) ListView lvDrawerItems;
+    @BindView(R.id.lvMenuItems) ListView lvDrawerItems;
 
     @BindString(R.string.price_for_cleaning) String textPriceForCleaning;
     @BindString(R.string.currency_sign) String textCurrencySign;
@@ -197,7 +196,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setSideMenu() {
-        SideMenuHelper.initSideMenu(lvDrawerItems);
+        SideMenuHelper.initSideMenuItems(lvDrawerItems);
     }
 
     public static void display(Context context) {

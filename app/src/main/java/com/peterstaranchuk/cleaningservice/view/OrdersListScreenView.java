@@ -16,4 +16,5 @@ public interface OrdersListScreenView {
 
     void showError(int error);
 
+    void setSideMenu();
 }

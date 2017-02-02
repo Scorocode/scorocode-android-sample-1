@@ -14,4 +14,6 @@ public interface CleanersListScreenView {
     void showErrorToast(int errorStringId);
 
     void setActionBar();
+
+    void setSideMenu();
 }

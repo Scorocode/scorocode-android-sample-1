@@ -24,6 +24,7 @@ public class OrdersListScreenPresenter {
 
     public void onCreate() {
         view.setActionBar();
+        view.setSideMenu();
     }
 
     public void refreshOrdersList() {

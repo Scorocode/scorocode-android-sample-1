@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.adapters.OrdersAdapter;
 import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
+import com.peterstaranchuk.cleaningservice.helpers.SideMenuHelper;
 import com.peterstaranchuk.cleaningservice.model.OrdersListScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.OrdersListScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.OrdersListScreenView;
@@ -24,6 +25,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 public class OrdersListActivity extends AppCompatActivity implements OrdersListScreenView {
 
     @BindView(R.id.lvOrders) ListView lvOrders;
+    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private OrdersListScreenPresenter presenter;
 
     @Override
@@ -60,6 +62,11 @@ public class OrdersListActivity extends AppCompatActivity implements OrdersListS
     @Override
     public void showError(int error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setSideMenu() {
+        SideMenuHelper.initSideMenuItems(lvMenuItems);
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.adapters.CleanersAdapter;
 import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
+import com.peterstaranchuk.cleaningservice.helpers.SideMenuHelper;
 import com.peterstaranchuk.cleaningservice.model.CleanersListScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.CleanersListScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.CleanersListScreenView;
@@ -28,12 +29,13 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
     @BindView(R.id.lvCleaners) ListView lvDocuments;
+    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private CleanersListScreenPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.cleaners_list);
         ButterKnife.bind(this);
 
         presenter = new CleanersListScreenPresenter(this, new CleanersListScreenModel(this));
@@ -66,6 +68,11 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     @Override
     public void setActionBar() {
         ActionBarHelper.setHomeButton(getSupportActionBar());
+    }
+
+    @Override
+    public void setSideMenu() {
+        SideMenuHelper.initSideMenuItems(lvMenuItems);
     }
 
     @Override

@@ -48,4 +48,13 @@ public class OrdersListScreenTest {
         verify(model).fetchOrders(any(CallbackFindDocument.class));
 //        verify(view).setOrdersList(any(List.class)); //cant be used because of callback
     }
+
+    @Test
+    public void shouldSetSideMenuWhenScreenStarted() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setSideMenu();
+    }
 }

@@ -109,4 +109,5 @@ public class OrderScreenPresenterTest {
 
         verify(model).placeOrder(anyString(), anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
     }
+
 }

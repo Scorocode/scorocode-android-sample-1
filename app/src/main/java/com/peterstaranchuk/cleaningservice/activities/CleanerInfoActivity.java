@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservice.helpers.FieldHelper;
+import com.peterstaranchuk.cleaningservice.helpers.SideMenuHelper;
 import com.peterstaranchuk.cleaningservice.model.CleanerInfoScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.CleanerInfoScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.CleanerInfoScreenView;
@@ -25,6 +27,7 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
     @BindView(R.id.ivCleanerPhoto) ImageView ivCleanerPhoto;
     @BindView(R.id.tvCleanerName) TextView tvCleanerName;
     @BindView(R.id.tvCleanerDescription) TextView tvCleanerDescription;
+    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
 
     private CleanerInfoScreenPresenter presenter;
 
@@ -54,6 +57,11 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
     @Override
     public void setActionBar() {
         ActionBarHelper.setHomeButton(getSupportActionBar());
+    }
+
+    @Override
+    public void setSideMenu() {
+        SideMenuHelper.initSideMenuItems(lvMenuItems);
     }
 
     @Override

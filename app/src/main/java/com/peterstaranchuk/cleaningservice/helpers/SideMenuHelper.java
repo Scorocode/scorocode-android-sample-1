@@ -31,7 +31,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.Document;
 
 public class SideMenuHelper {
 
-    public static void initSideMenu(ListView lvDrawerItems) {
+    public static void initSideMenuItems(ListView lvDrawerItems) {
         final Context context = lvDrawerItems.getContext();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, getListWithMenuItems(context));

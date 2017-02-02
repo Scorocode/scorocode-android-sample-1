@@ -22,5 +22,6 @@ public class CleanerInfoScreenPresenter {
         DocumentInfo cleanerInfo = model.getCleanerInfo(view.getIntent());
         view.setCleanerInfo(cleanerInfo);
         view.setActionBar();
+        view.setSideMenu();
     }
 }

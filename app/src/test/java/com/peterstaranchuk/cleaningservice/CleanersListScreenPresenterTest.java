@@ -50,4 +50,13 @@ public class CleanersListScreenPresenterTest {
         //TODO add check with callback
 //        verify(view).refreshCleanersList(new ArrayList<DocumentInfo>());
     }
+
+    @Test
+    public void shouldInitSideMenuWhenScreenCreated() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setSideMenu();
+    }
 }

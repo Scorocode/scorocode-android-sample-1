@@ -39,5 +39,6 @@ public class CleanersListScreenPresenter {
 
     public void onCreate() {
         view.setActionBar();
+        view.setSideMenu();
     }
 }

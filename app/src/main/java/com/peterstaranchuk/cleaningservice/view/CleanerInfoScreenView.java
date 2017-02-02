@@ -14,4 +14,6 @@ public interface CleanerInfoScreenView {
     Intent getIntent();
 
     void setActionBar();
+
+    void setSideMenu();
 }

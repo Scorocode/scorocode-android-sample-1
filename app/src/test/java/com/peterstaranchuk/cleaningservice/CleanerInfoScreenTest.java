@@ -47,4 +47,13 @@ public class CleanerInfoScreenTest {
 
         verify(view).setActionBar();
     }
+
+    @Test
+    public void shouldInitSideMenuWhenActivityStarted() throws Exception {
+        //when
+        presenter.onCreate();
+
+        //than
+        verify(view).setSideMenu();
+    }
 }
