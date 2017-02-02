@@ -18,6 +18,7 @@ public class OrderScreenModel {
     public static final int PRICE_ADDITIONAL_ROOM = 12;
     public static final double PRICE_FOR_SQF = 0.15;
     public static final double WRONG_PRICE = -1d;
+    public static final String INITIAL_ORDER_STATE = "placed";
 
     private Context context;
 
@@ -53,6 +54,7 @@ public class OrderScreenModel {
         document.setField(fieldHelper.sizeInSquareFootsField(), sizeInSquareFoots);
         document.setField(fieldHelper.bathroomsCountField(), bathroomsCount);
         document.setField(fieldHelper.bedroomsCountField(), bedroomsCount);
+        document.setField(fieldHelper.orderStatusField(), INITIAL_ORDER_STATE);
 
         document.saveDocument(callbackDocumentSaved);
     }

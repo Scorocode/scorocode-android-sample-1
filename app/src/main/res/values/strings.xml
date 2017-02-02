@@ -89,4 +89,10 @@
     <string name="order_item_status">Order status:</string>
     <string name="createdAtField">createdAt</string>
     <string name="orderStatusField">orderStatus</string>
+    <string name="feedback_label_text">Thanks for your feedback. You can tell us about application. About features you need in app and about our cleaners. Let\'s keep in touch.</string>
+    <string name="feedback_hint">Please, write your feedback here</string>
+    <string name="collectionNameFeedback">feedback</string>
+    <string name="feedbackTextField">feedbackText</string>
+    <string name="feedback_sent">Feedback sent</string>
+    <string name="error_during_feedback_sending">Error during feedback sending</string>
 </resources>

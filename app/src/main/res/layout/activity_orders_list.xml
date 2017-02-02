@@ -5,11 +5,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
     tools:context="com.peterstaranchuk.cleaningservice.activities.OrdersListActivity">
 
     <ListView
         android:id="@+id/lvOrders"
+        android:divider="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -31,6 +31,9 @@ public class FieldHelper {
     private String createdAt;
     private String orderStatus;
 
+    //feedback collection
+    private String feedbackText;
+
     public FieldHelper(Context context) {
         setCleanersCollectionFields(context);
         setOrdersCollectionsFields(context);
@@ -45,6 +48,7 @@ public class FieldHelper {
         this.userName = context.getString(R.string.userNameField);
         this.createdAt = context.getString(R.string.createdAtField);
         this.orderStatus = context.getString(R.string.orderStatusField);
+        this.feedbackText = context.getString(R.string.feedbackTextField);
     }
 
     private void setCleanersCollectionFields(Context context) {
@@ -96,6 +100,11 @@ public class FieldHelper {
     @NonNull
     public String userIdField() {
         return userId;
+    }
+
+    @NonNull
+    public String feedbackTextField() {
+        return feedbackText;
     }
 
     @NonNull
