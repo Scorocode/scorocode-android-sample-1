@@ -10,7 +10,7 @@
         android:id="@+id/llLeft"
         android:layout_width="@dimen/customCounterElementSize"
         android:layout_height="@dimen/customCounterElementSize"
-        android:background="@drawable/custom_counter_border"
+        android:background="@drawable/left_border"
         android:gravity="center">
 
         <ImageView
@@ -39,7 +39,7 @@
         android:id="@+id/llRight"
         android:layout_width="@dimen/customCounterElementSize"
         android:layout_height="@dimen/customCounterElementSize"
-        android:background="@drawable/custom_counter_border"
+        android:background="@drawable/right_border"
         android:gravity="center">
 
         <ImageView

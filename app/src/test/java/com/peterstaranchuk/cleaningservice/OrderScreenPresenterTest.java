@@ -1,5 +1,7 @@
 package com.peterstaranchuk.cleaningservice;
 
+import android.os.Bundle;
+
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.OrderScreenPresenter;
@@ -18,6 +20,7 @@ import static org.mockito.Matchers.anyDouble;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -38,7 +41,7 @@ public class OrderScreenPresenterTest {
     @Test
     public void should_Init_Default_States_When_Activity_Created() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(null);
 
         //than
         verify(view).setDefaultState();
@@ -47,7 +50,7 @@ public class OrderScreenPresenterTest {
     @Test
     public void should_Set_Listeners_When_Activity_Created() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(null);
 
         //than
         verify(view).setOrderInfoChangedListeners();
@@ -56,7 +59,7 @@ public class OrderScreenPresenterTest {
     @Test
     public void should_Set_Action_Bar_When_Activity_Created() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(null);
 
         //than
         verify(view).setActionBar();
@@ -65,7 +68,7 @@ public class OrderScreenPresenterTest {
     @Test
     public void should_Set_Side_Menu_When_Activity_Created() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(null);
 
         //than
         verify(view).setSideMenu();
@@ -111,4 +114,64 @@ public class OrderScreenPresenterTest {
         verify(model).placeOrder(anyString(), anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
     }
 
+    @Test
+    public void should_Store_Counter_State_When_Activity_Paused() throws Exception {
+        //when
+        presenter.storeCounterState(any(Bundle.class));
+
+        //than
+        verify(view).storeCounterState(any(Bundle.class));
+    }
+
+    @Test
+    public void should_Restore_Counter_State_When_Activity_Resumed() throws Exception {
+        //given
+        Bundle bundle = new Bundle();
+
+        //when
+        presenter.onCreate(bundle);
+
+        //than
+        verify(view).restoreCounterState(any(Bundle.class));
+    }
+
+    @Test
+    public void should_Not_Restore_Counter_State_When_Activity_Started() throws Exception {
+        //when
+
+        presenter.onCreate(null);
+
+        //than
+        verify(view, never()).restoreCounterState(any(Bundle.class));
+    }
+
+    @Test
+    public void shouldStorePropertyTypeWhenActivityPaused() throws Exception {
+        //when
+        presenter.storePropertyType(any(Bundle.class));
+
+        //than
+        verify(view).storePropertyType(any(Bundle.class));
+    }
+
+    @Test
+    public void shouldRestorePropertyTypeIfActivityResumed() throws Exception {
+        //given
+        Bundle bundle = new Bundle();
+
+        //when
+        presenter.onCreate(bundle);
+
+        //than
+        verify(view).restorePropertyType(any(Bundle.class));
+    }
+
+    @Test
+    public void shouldNotRestorePropertyTypeIfActivityCreated() throws Exception {
+        //when
+        presenter.onCreate(null);
+
+        //than
+        verify(view, never()).restorePropertyType(any(Bundle.class));
+    }
 }

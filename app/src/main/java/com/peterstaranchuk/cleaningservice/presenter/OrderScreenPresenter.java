@@ -1,5 +1,7 @@
 package com.peterstaranchuk.cleaningservice.presenter;
 
+import android.os.Bundle;
+
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.model.OrderScreenModel;
@@ -23,11 +25,16 @@ public class OrderScreenPresenter {
         this.model = model;
     }
 
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
         view.setDefaultState();
         view.setOrderInfoChangedListeners();
         view.setActionBar();
         view.setSideMenu();
+
+        if(savedInstanceState != null) {
+            view.restoreCounterState(savedInstanceState);
+            view.restorePropertyType(savedInstanceState);
+        }
     }
 
     public void setPropertyType(PropertyType propertyType) {
@@ -111,5 +118,13 @@ public class OrderScreenPresenter {
     public double getPrice() {
         this.price = model.getPrice(getPropertyType(), view.getSizeInSquareFoots(), view.getBedroomsCount(), view.getBathroomsCount());
         return this.price;
+    }
+
+    public void storeCounterState(Bundle outState) {
+        view.storeCounterState(outState);
+    }
+
+    public void storePropertyType(Bundle bundle) {
+        view.storePropertyType(bundle);
     }
 }

@@ -6,5 +6,5 @@
     <color name="mainColor">#00695C</color>
     <color name="disabledButtonColor">#BDBDBD</color>
     <color name="itemPressed">#00695C</color>
-    <color name="darkerGray">#333333</color>
+    <color name="darkerGray">#555555</color>
 </resources>

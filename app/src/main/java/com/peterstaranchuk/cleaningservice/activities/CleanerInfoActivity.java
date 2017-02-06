@@ -49,8 +49,12 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
         String cleanerName = fieldHelper.getCleanerNameFrom(cleanerInfo);
         String cleanerDescription = fieldHelper.getCleanerDescriptionFrom(cleanerInfo);
 
+        int avatarSize = Math.round(getResources().getDimension(R.dimen.cleaner_avatar_size));
+
         Picasso.with(this)
                 .load(imageUrl)
+                .resize(avatarSize, avatarSize)
+                .centerCrop()
                 .placeholder(R.drawable.ic_face_black_24dp)
                 .into(ivCleanerPhoto);
 

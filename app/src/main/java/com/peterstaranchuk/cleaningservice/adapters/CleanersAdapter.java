@@ -30,12 +30,14 @@ public class CleanersAdapter extends BaseAdapter {
     private List<DocumentInfo> documents;
     private LayoutInflater inflater;
     private int layoutRes;
+    private final int avatarSize;
 
     public CleanersAdapter(Context context, List<DocumentInfo> documents, int layoutRes) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.documents = (documents == null? new ArrayList<DocumentInfo>() : documents);
         this.layoutRes = layoutRes;
+        this.avatarSize = Math.round(context.getResources().getDimension(R.dimen.cleaner_card_size_in_list));
     }
 
     @Override
@@ -76,6 +78,8 @@ public class CleanersAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(photoUrl)
                 .placeholder(R.drawable.no_image)
+                .resize(avatarSize, avatarSize)
+                .centerCrop()
                 .into(holder.ivCleanerPhoto);
 
         holder.tvCleanerName.setText(fieldHelper.getCleanerNameFrom(document));

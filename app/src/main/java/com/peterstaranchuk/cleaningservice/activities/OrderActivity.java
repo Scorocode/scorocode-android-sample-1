@@ -36,6 +36,10 @@ import rx.functions.Action1;
 
 public class OrderActivity extends AppCompatActivity implements OrderScreenView {
 
+    private static final String STATE_BEDROOMS_COUNTER = "state_bedroomsCounterState";
+    private static final String STATE_BATHROOMS_COUNTER = "state_bathroomsCounterState";
+    private static final String STATE_PROPERTY_TYPE = "state_property_type";
+
     @BindView(R.id.cvBedroomsCounter) CounterView cvBedroomsCounter;
     @BindView(R.id.cvBathroomsCounter) CounterView cvBathroomsCounter;
     @BindView(R.id.etSizeInSQF) EditText etSizeInSQF;
@@ -70,7 +74,14 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
         actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
 
-        presenter.onCreate();
+        presenter.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        presenter.storeCounterState(outState);
+        presenter.storePropertyType(outState);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -96,7 +107,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setDefaultState() {
-        etSizeInSQF.setText(String.valueOf(1000));
+        etSizeInSQF.setText("");
         presenter.setPropertyType(PropertyType.HOUSE);
     }
 
@@ -115,6 +126,32 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     public void setControlItemsTextColors(int houseColorId, int apartmentColorId) {
         tvControlHouse.setTextColor(getResources().getColor(houseColorId));
         tvControlApartment.setTextColor(getResources().getColor(apartmentColorId));
+    }
+
+    @Override
+    public void storeCounterState(Bundle outState) {
+        outState.putLong(STATE_BEDROOMS_COUNTER, cvBedroomsCounter.getCurrentCount());
+        outState.putLong(STATE_BATHROOMS_COUNTER, cvBathroomsCounter.getCurrentCount());
+    }
+
+    @Override
+    public void restoreCounterState(Bundle savedInstanceState) {
+        long bedroomsCount = savedInstanceState.getLong(STATE_BEDROOMS_COUNTER, 1);
+        long bathroomsCount = savedInstanceState.getLong(STATE_BATHROOMS_COUNTER, 1);
+
+        cvBedroomsCounter.setCurrentCount(bedroomsCount);
+        cvBathroomsCounter.setCurrentCount(bathroomsCount);
+    }
+
+    @Override
+    public void storePropertyType(Bundle outState) {
+        outState.putSerializable(STATE_PROPERTY_TYPE, presenter.getPropertyType());
+    }
+
+    @Override
+    public void restorePropertyType(Bundle savedInstanceState) {
+        PropertyType propertyType = (PropertyType) savedInstanceState.getSerializable(STATE_PROPERTY_TYPE);
+        presenter.setPropertyType(propertyType);
     }
 
     @Override

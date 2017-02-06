@@ -22,14 +22,8 @@
                 android:layout_width="@dimen/cleaner_avatar_size"
                 android:layout_height="@dimen/cleaner_avatar_size" />
 
-            <LinearLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <TextView
+                    android:layout_marginTop="8dp"
                     style="@style/labelStyle"
                     android:text="@string/name" />
 
@@ -49,7 +43,6 @@
                     android:layout_marginTop="8dp" />
             </LinearLayout>
 
-        </LinearLayout>
 
     </ScrollView>
 

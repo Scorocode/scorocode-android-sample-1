@@ -71,6 +71,10 @@ public class CounterView extends LinearLayout {
         return Long.valueOf(tvCounter.getText().toString());
     }
 
+    public void setCurrentCount(long count) {
+        tvCounter.setText(String.valueOf(count));
+    }
+
     public void setCounterClickAction(Action1<CharSequence> clickAction) {
         this.clickAction = clickAction;
     }
