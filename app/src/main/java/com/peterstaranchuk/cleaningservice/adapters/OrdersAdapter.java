@@ -87,7 +87,7 @@ public class OrdersAdapter extends BaseAdapter {
         Date date = new Date(placedAt);
 
         holder.tvOrderNumber.setText(textOrderNumber + " " + (position + 1));
-        holder.tvOrderPlaceTime.setText(textOrderPlacedAt + " " + dateFormat.format(date) + timeFormat.format(date));
+        holder.tvOrderPlaceTime.setText(textOrderPlacedAt + " " + dateFormat.format(date) + " " + timeFormat.format(date));
         holder.tvOrderStatus.setText(textOrderStatus + " " + orderStatus);
 
         return view;

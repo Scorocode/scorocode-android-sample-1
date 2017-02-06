@@ -74,7 +74,7 @@
     <string name="orderSending">Order place in process</string>
     <string name="orderSentTitle">Order sent</string>
     <string name="ok">OK</string>
-    <string name="orderSentMessage">Order successfully sent</string>
+    <string name="orderSentMessage">Order successfully sent. Our managers will call you soon.</string>
     <string name="errorWhileSendingTitle">Error</string>
     <string name="errorWhileSendingMessage">Error while sending process</string>
     <string name="menu_item_orders">Orders</string>

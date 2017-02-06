@@ -7,9 +7,9 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
@@ -19,7 +19,9 @@ import com.peterstaranchuk.cleaningservice.activities.OrdersListActivity;
 import com.peterstaranchuk.cleaningservice.enums.MenuItems;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackDocumentSaved;
@@ -34,8 +36,7 @@ public class SideMenuHelper {
     public static void initSideMenuItems(ListView lvDrawerItems) {
         final Context context = lvDrawerItems.getContext();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, getListWithMenuItems(context));
-        lvDrawerItems.setAdapter(arrayAdapter);
+        lvDrawerItems.setAdapter(getSimpleAdapter(context));
 
         lvDrawerItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,6 +62,28 @@ public class SideMenuHelper {
                 }
             }
         });
+    }
+
+    @NonNull
+    private static SimpleAdapter getSimpleAdapter(Context context) {
+        String ATTRIBUTE_TEXT = "TEXT";
+        String ATTRIBUTE_IMAGE = "IMAGE";
+
+        List<Map<String, Object>> data = new ArrayList<>();
+
+        Map<String, Object> map;
+        for(MenuItems item : MenuItems.values()) {
+            map = new HashMap<>();
+            map.put(ATTRIBUTE_TEXT, item.getMenuItemName(context));
+            map.put(ATTRIBUTE_IMAGE, item.getMenuItemIcon());
+            data.add(map);
+        }
+
+        String[] from = {ATTRIBUTE_TEXT, ATTRIBUTE_IMAGE};
+
+        int[] to = {R.id.tvMenuItemName, R.id.ivMenuItemIcon};
+
+        return new SimpleAdapter(context, data, R.layout.menu_item, from, to);
     }
 
     private static void showFeedbackSendDialog(final Context context) {
@@ -105,7 +128,7 @@ public class SideMenuHelper {
     private static List<String> getListWithMenuItems(Context context) {
         List<String> list = new ArrayList<>();
         for(MenuItems item : MenuItems.values()) {
-            list.add(item.getMenuName(context));
+            list.add(item.getMenuItemName(context));
         }
         return list;
     }

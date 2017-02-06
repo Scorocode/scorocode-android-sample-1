@@ -9,18 +9,24 @@ import com.peterstaranchuk.cleaningservice.R;
  */
 
 public enum MenuItems {
-    ORDERS(R.string.menu_item_orders),
-    CLEANERS(R.string.menu_item_cleaners),
-    FEEDBACK(R.string.feedback),
-    LOGOUT(R.string.menu_item_logout);
+    ORDERS(R.string.menu_item_orders, R.drawable.ic_assignment_black_24dp),
+    CLEANERS(R.string.menu_item_cleaners, R.drawable.ic_perm_identity_black_24dp),
+    FEEDBACK(R.string.feedback, R.drawable.ic_thumbs_up_down_black_24dp),
+    LOGOUT(R.string.menu_item_logout, R.drawable.ic_reply_black_24dp);
 
     private int menuItemNameId;
+    private int iconId;
 
-    MenuItems(int menuItemNameId) {
+    MenuItems(int menuItemNameId, int iconId) {
         this.menuItemNameId = menuItemNameId;
+        this.iconId = iconId;
     }
 
-    public String getMenuName(Context context) {
+    public String getMenuItemName(Context context) {
         return context.getString(menuItemNameId);
+    }
+
+    public int getMenuItemIcon() {
+        return iconId;
     }
 }

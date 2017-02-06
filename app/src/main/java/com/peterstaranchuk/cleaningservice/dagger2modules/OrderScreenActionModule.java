@@ -5,6 +5,7 @@ import com.peterstaranchuk.cleaningservice.presenter.OrderScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,6 +27,7 @@ public class OrderScreenActionModule {
     }
 
     @Provides
+    @Singleton
     public OrderScreenPresenter presenter() {
         return new OrderScreenPresenter(orderScreenView, new OrderScreenModel(orderScreenView.getContext()));
     }

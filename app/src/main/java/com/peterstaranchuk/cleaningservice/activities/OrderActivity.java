@@ -18,7 +18,6 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.custom_views.CounterView;
 import com.peterstaranchuk.cleaningservice.dagger2components.OrderScreenActionsComponent;
-import com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.helpers.ActionBarHelper;
 import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
@@ -28,9 +27,6 @@ import com.peterstaranchuk.cleaningservice.presenter.OrderScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 
 import java.text.DecimalFormat;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -55,10 +51,10 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindString(R.string.currency_sign) String textCurrencySign;
     @BindString(R.string.tell_us_about_your) String textTitle;
 
-    @Inject OrderScreenPresenter presenter;
-    @Inject @Named(OrderScreenActionModule.ACTION_STATE_CHANGED) Action1<CharSequence> stateChangedAction;
-    @Inject @Named(OrderScreenActionModule.ACTION_SET_HOUSE_PROPERTY_TYPE) Action1<Void> actionSetHousePropertyType;
-    @Inject @Named(OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE) Action1<Void> actionSetApartmentPropertyType;
+    /*@Inject */private OrderScreenPresenter presenter;
+    /*@Inject @Named(OrderScreenActionModule.ACTION_STATE_CHANGED)*/private Action1<CharSequence> stateChangedAction;
+    /*@Inject @Named(OrderScreenActionModule.ACTION_SET_HOUSE_PROPERTY_TYPE)*/ private Action1<Void> actionSetHousePropertyType;
+    /*@Inject @Named(OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE)*/ private Action1<Void> actionSetApartmentPropertyType;
     private AlertDialog orderPlacingDialog;
 
     @Override
@@ -68,6 +64,12 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         ButterKnife.bind(this);
 
         OrderScreenActionsComponent.Injector.inject(this);
+
+        this.presenter = new OrderScreenPresenter(this, new OrderScreenModel(this));
+        stateChangedAction = presenter.getStateChangedAction();
+        actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
+        actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
+
         presenter.onCreate();
     }
 
