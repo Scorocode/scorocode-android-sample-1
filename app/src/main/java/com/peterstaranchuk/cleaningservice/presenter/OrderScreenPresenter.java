@@ -59,11 +59,11 @@ public class OrderScreenPresenter {
     }
 
     private int getApartmentControlDrawable() {
-        return getPropertyType().equals(PropertyType.APARTMENT)? R.drawable.custom_counter_border : R.drawable.custom_counter_border_pressed;
+        return getPropertyType().equals(PropertyType.APARTMENT)? R.drawable.control_border : R.drawable.control_border_pressed;
     }
 
     private int getHouseControlDrawable() {
-        return getPropertyType().equals(PropertyType.HOUSE)? R.drawable.custom_counter_border : R.drawable.custom_counter_border_pressed;
+        return getPropertyType().equals(PropertyType.HOUSE)? R.drawable.control_border : R.drawable.control_border_pressed;
     }
 
     public PropertyType getPropertyType() {
