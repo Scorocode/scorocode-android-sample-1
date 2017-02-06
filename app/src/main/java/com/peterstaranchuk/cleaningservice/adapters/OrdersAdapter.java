@@ -80,17 +80,35 @@ public class OrdersAdapter extends BaseAdapter {
 
         FieldHelper fieldHelper = new FieldHelper(context);
         String placedAt = fieldHelper.getPlacedAt(order);
-        String orderStatus = fieldHelper.getOrderStatus(order);
+        Integer orderStatusCode = fieldHelper.getOrderStatus(order);
 
         DateFormat dateFormat = android.text.format.DateFormat.getLongDateFormat(context.getApplicationContext());
         DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(context.getApplicationContext());
         Date date = new Date(placedAt);
 
-        holder.tvOrderNumber.setText(textOrderNumber + " " + (position + 1));
-        holder.tvOrderPlaceTime.setText(textOrderPlacedAt + " " + dateFormat.format(date) + " " + timeFormat.format(date));
-        holder.tvOrderStatus.setText(textOrderStatus + " " + orderStatus);
+        holder.tvOrderNumber.setText(textOrderNumber + " " + (getCount() - position));
+        holder.tvOrderPlaceTime.setText(textOrderPlacedAt + "\n" + dateFormat.format(date) + " " + timeFormat.format(date));
+        holder.tvOrderStatus.setText(textOrderStatus + " " + getOrderStatusFrom(orderStatusCode));
 
         return view;
+    }
+
+    private String getOrderStatusFrom(Integer orderStatusCode) {
+        switch (orderStatusCode) {
+            case 0:
+                return context.getString(R.string.status_placed);
+
+            case 1:
+                return context.getString(R.string.status_accepted);
+
+            case 2:
+                return context.getString(R.string.status_inprogress);
+
+            case 3:
+                return context.getString(R.string.status_completed);
+        }
+
+        return context.getString(R.string.status_error);
     }
 
     static class ViewHolder {

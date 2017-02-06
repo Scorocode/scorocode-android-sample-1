@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.dagger2components.RegisterScreenMVPComponent;
@@ -68,6 +67,16 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
         }
     }
 
+    @Override
+    public void finishActivity() {
+        finish();
+    }
+
+    @Override
+    public void displayFilledLoginActivity(String email, String password) {
+        LoginActivity.display(getContext(), email, password);
+    }
+
     @OnClick(R.id.btnRegister)
     public void onBtnRegisterClicked(View registerButton) {
         presenter.onRegisterButtonPressed();
@@ -107,8 +116,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     }
 
     @Override
-    public void showError() {
-        Toast.makeText(RegisterActivity.this, R.string.notMatchPasswords, Toast.LENGTH_SHORT).show();
+    public void showToast(int errorId) {
+
     }
 
     @Override

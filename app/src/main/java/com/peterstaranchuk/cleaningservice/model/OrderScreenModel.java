@@ -18,7 +18,7 @@ public class OrderScreenModel {
     public static final int PRICE_ADDITIONAL_ROOM = 12;
     public static final double PRICE_FOR_SQF = 0.15;
     public static final double WRONG_PRICE = -1d;
-    public static final String INITIAL_ORDER_STATE = "placed";
+    public static final int INITIAL_ORDER_STATE = 0;
 
     private Context context;
 

@@ -33,6 +33,7 @@ public class FieldHelper {
 
     //feedback collection
     private String feedbackText;
+    private String isEmployee;
 
     public FieldHelper(Context context) {
         setCleanersCollectionFields(context);
@@ -49,6 +50,7 @@ public class FieldHelper {
         this.createdAt = context.getString(R.string.createdAtField);
         this.orderStatus = context.getString(R.string.orderStatusField);
         this.feedbackText = context.getString(R.string.feedbackTextField);
+        this.isEmployee = context.getString(R.string.isEmployeeField);
     }
 
     private void setCleanersCollectionFields(Context context) {
@@ -158,13 +160,13 @@ public class FieldHelper {
     }
 
     @NonNull
-    public String getOrderStatus(DocumentInfo documentInfo) {
+    public Integer getOrderStatus(DocumentInfo documentInfo) {
         if(documentInfo == null) {
-            return "";
+            return 0;
         }
 
         Object orderStatus = documentInfo.get(orderStatusField());
-        return orderStatus == null? "" : orderStatus.toString();
+        return orderStatus == null? 0 : Math.round(Float.valueOf(orderStatus.toString()));
     }
 
     @NonNull
@@ -175,5 +177,9 @@ public class FieldHelper {
     @NonNull
     public String orderStatusField() {
         return orderStatus;
+    }
+
+    public String isEmployeeField() {
+        return isEmployee;
     }
 }

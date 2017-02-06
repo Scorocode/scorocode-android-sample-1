@@ -1,8 +1,10 @@
 package com.peterstaranchuk.cleaningservice.presenter;
 
+import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.model.RegisterScreenModel;
 import com.peterstaranchuk.cleaningservice.view.RegisterScreenView;
 
+import ru.profit_group.scorocode_sdk.Callbacks.CallbackRegisterUser;
 import rx.functions.Action1;
 
 /**
@@ -26,12 +28,14 @@ public class RegisterScreenPresenter {
                 } else {
                     if(!view.getPassword().isEmpty() && !view.getRepeatedPassword().isEmpty()
                             && !model.isPasswordsMatch(view.getPassword(), view.getRepeatedPassword())) {
-                        view.showError();
+                        view.showToast(R.string.notMatchPasswords);
                     }
                     view.disableRegisterButton();
                 }
             }
         };
+
+
     }
 
     public void onCreateScreen() {
@@ -41,13 +45,27 @@ public class RegisterScreenPresenter {
     }
 
     public void onRegisterButtonPressed() {
-        String userName = view.getUserName();
-        String email = view.getEmail();
-        String password = view.getPassword();
-        String repeatedPassword = view.getRepeatedPassword();
+        final String userName = view.getUserName();
+        final String email = view.getEmail();
+        final String password = view.getPassword();
+        final String repeatedPassword = view.getRepeatedPassword();
 
         if(model.isDataValid(userName, email, password, repeatedPassword)) {
-            model.registerNewUser(userName, email, password);
+
+            CallbackRegisterUser callback = new CallbackRegisterUser() {
+                @Override
+                public void onRegisterSucceed() {
+                    view.showToast(R.string.user_registered);
+                    view.displayFilledLoginActivity(email, password);
+                }
+
+                @Override
+                public void onRegisterFailed(String errorCode, String errorMessage) {
+                    view.showToast(R.string.errorDuringRegister);
+                }
+            };
+
+            model.registerNewUser(userName, email, password, callback);
         } else {
             model.handleError();
         }

@@ -25,4 +25,6 @@ public interface LoginScreenView {
     void setItemsVisibility();
 
     void setActionBar();
+
+    void setEmailAndPasswordAfterRegistration();
 }

@@ -24,6 +24,8 @@ import rx.functions.Action1;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreenView {
 
+    public static final String EXTRA_EMAIL = "EXTRA_EMAIL";
+    public static final String EXTRA_PASSWORD = "EXTRA_PASSWORD";
     @BindView(R.id.etEmail) EditText etEmail;
     @BindView(R.id.etPassword) EditText etPassword;
     @BindView(R.id.btnLogin) Button btnLogin;
@@ -45,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
                 null, null, null, null
         );
 
-        presenter.onCreateScreen();
+        presenter.onCreate(savedInstanceState);
     }
 
     @OnClick(R.id.btnLogin)
@@ -107,8 +109,28 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         }
     }
 
+    @Override
+    public void setEmailAndPasswordAfterRegistration() {
+        if(getIntent() != null) {
+            String email = getIntent().getStringExtra(EXTRA_EMAIL);
+            String password = getIntent().getStringExtra(EXTRA_PASSWORD);
+
+            etEmail.setText(email);
+            etPassword.setText(password);
+        }
+    }
+
     public static void display(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
+    }
+
+    public static void display(Context context, String email, String password) {
+        //this method should be used only after successful registration process
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra(EXTRA_EMAIL, email);
+        intent.putExtra(EXTRA_PASSWORD, password);
+        context.startActivity(intent);
     }
 
 }

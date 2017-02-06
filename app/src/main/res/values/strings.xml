@@ -101,4 +101,11 @@
     <string name="cleanerListActivityTitle">Our cleaners</string>
     <string name="cleanersInfoActivityTitle">Cleaner info</string>
     <string name="loginScreenTitle">Login</string>
+    <string name="status_placed">Placed</string>
+    <string name="status_accepted">Accepted</string>
+    <string name="status_inprogress">in progress</string>
+    <string name="status_completed">completed</string>
+    <string name="status_error">can\'t get status. Please, call to our office.</string>
+    <string name="isEmployeeField">isEmployee</string>
+    <string name="user_registered">User registered succsessfull</string>
 </resources>

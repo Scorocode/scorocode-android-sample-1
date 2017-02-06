@@ -10,6 +10,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import ru.profit_group.scorocode_sdk.Callbacks.CallbackRegisterUser;
+
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -64,7 +67,7 @@ public class RegisterScreenPresenterTest {
         verify(view).getPassword();
         verify(view).getRepeatedPassword();
 
-        verify(model).registerNewUser(anyString(), anyString(), anyString());
+        verify(model).registerNewUser(anyString(), anyString(), anyString(), any(CallbackRegisterUser.class));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.peterstaranchuk.cleaningservice;
 
+import android.os.Bundle;
+
 import com.peterstaranchuk.cleaningservice.model.LoginScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.LoginScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.LoginScreenView;
@@ -56,7 +58,7 @@ public class LoginScreenPresenterTest {
     @Test
     public void shouldInitScreenStateWhenItCreated() throws Exception {
         //when
-        presenter.onCreateScreen();
+        presenter.onCreate(null);
 
         //than
         verify(view).disableLoginButton();
@@ -76,7 +78,7 @@ public class LoginScreenPresenterTest {
     @Test
     public void shouldClearUserInfoWhenScreenStarted() throws Exception {
         //when
-        presenter.onCreateScreen();
+        presenter.onCreate(null);
 
         //than
         verify(model).clearUserData();
@@ -85,9 +87,19 @@ public class LoginScreenPresenterTest {
     @Test
     public void shouldSetActionBarTitleWhenActivityStarted() throws Exception {
         //when
-        presenter.onCreateScreen();
+        presenter.onCreate(null);
 
         //than
         verify(view).setActionBar();
+    }
+
+    @Test
+    public void shouldSetEmailAndPasswordAfterRegistrationProcess() throws Exception {
+
+        //when
+        presenter.onCreate(new Bundle());
+
+        //than
+        verify(view).setEmailAndPasswordAfterRegistration();
     }
 }

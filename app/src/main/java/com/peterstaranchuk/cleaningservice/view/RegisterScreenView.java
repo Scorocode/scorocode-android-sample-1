@@ -20,7 +20,7 @@ public interface RegisterScreenView {
 
     void enableRegisterButton();
 
-    void showError();
+    void showToast(int errorId);
 
     void disableRegisterButton();
 
@@ -29,4 +29,8 @@ public interface RegisterScreenView {
     Context getContext();
 
     void setActionBar();
+
+    void finishActivity();
+
+    void displayFilledLoginActivity(String email, String password);
 }

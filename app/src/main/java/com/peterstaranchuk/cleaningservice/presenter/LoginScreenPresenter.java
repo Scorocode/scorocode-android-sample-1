@@ -1,5 +1,7 @@
 package com.peterstaranchuk.cleaningservice.presenter;
 
+import android.os.Bundle;
+
 import com.peterstaranchuk.cleaningservice.model.LoginScreenModel;
 import com.peterstaranchuk.cleaningservice.view.LoginScreenView;
 
@@ -29,12 +31,14 @@ public class LoginScreenPresenter {
         }
     }
 
-    public void onCreateScreen() {
+    public void onCreate(Bundle savedInstanceState) {
         model.clearUserData();
         view.disableLoginButton();
         view.setDataListeners();
         view.setItemsVisibility();
         view.setActionBar();
+
+        view.setEmailAndPasswordAfterRegistration();
     }
 
     public void onRegisterButtonClicked() {
