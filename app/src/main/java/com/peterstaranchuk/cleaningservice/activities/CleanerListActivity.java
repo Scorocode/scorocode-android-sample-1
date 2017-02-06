@@ -28,7 +28,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
 public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
-    @BindView(R.id.lvCleaners) ListView lvDocuments;
+    @BindView(R.id.lvCleaners) ListView lvCleaners;
     @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private CleanersListScreenPresenter presenter;
 
@@ -50,9 +50,9 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
 
     @Override
     public void refreshCleanersList(final List<DocumentInfo> documentInfos) {
-        CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_document);
-        lvDocuments.setAdapter(adapter);
-        lvDocuments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_cleaner);
+        lvCleaners.setAdapter(adapter);
+        lvCleaners.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CleanerInfoActivity.display(CleanerListActivity.this, documentInfos.get(position));

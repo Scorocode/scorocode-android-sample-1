@@ -79,6 +79,7 @@ public class OrderScreenPresenterTest {
 
         //than
         verify(view).highlightSelectedMode(anyInt(), anyInt());
+        verify(view).setControlItemsTextColors(anyInt(), anyInt());
         verify(view).changeTitle();
         verify(model).getPrice(propertyType, 0d, 0L, 0L);
         verify(view).setPrice(anyDouble());

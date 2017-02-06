@@ -4,7 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="login_activity_margin">16dp</dimen>
     <dimen name="addNewDocumentItemsMargin">16dp</dimen>
-    <dimen name="controlsPadding">8dp</dimen>
+    <dimen name="controlsPadding">12dp</dimen>
     <dimen name="customCounterElementSize">48dp</dimen>
-    <dimen name="cleaner_avatar_size">120dp</dimen>
+    <dimen name="cleaner_avatar_size">240dp</dimen>
+    <dimen name="cleaner_proto_size_in_list">200dp</dimen>
+    <dimen name="cleaner_card_size_in_list">450dp</dimen>
 </resources>

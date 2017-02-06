@@ -102,13 +102,19 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void changeTitle() {
-        tvTitle.setText(textTitle + " " + presenter.getPropertyType().getPropertyName(this));
+        tvTitle.setText(textTitle + " " + presenter.getPropertyType().getPropertyName(this) +":");
     }
 
     @Override
     public void highlightSelectedMode(int houseControlColorId, int apartmentControlColorId) {
         tvControlApartment.setBackgroundResource(houseControlColorId);
         tvControlHouse.setBackgroundResource(apartmentControlColorId);
+    }
+
+    @Override
+    public void setControlItemsTextColors(int houseColorId, int apartmentColorId) {
+        tvControlHouse.setTextColor(getResources().getColor(houseColorId));
+        tvControlApartment.setTextColor(getResources().getColor(apartmentColorId));
     }
 
     @Override
@@ -183,7 +189,6 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         refreshMakeAnOrderButtonState();
 
         btnMakeAnOrder.setText(priceText);
-//        tvPrice.setText(priceText);
     }
 
     @Override

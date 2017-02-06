@@ -49,9 +49,13 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
         String cleanerName = fieldHelper.getCleanerNameFrom(cleanerInfo);
         String cleanerDescription = fieldHelper.getCleanerDescriptionFrom(cleanerInfo);
 
-        Picasso.with(this).load(imageUrl).into(ivCleanerPhoto);
+        Picasso.with(this)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_face_black_24dp)
+                .into(ivCleanerPhoto);
+
         tvCleanerName.setText(cleanerName);
-        tvCleanerDescription.setText(cleanerDescription);
+        tvCleanerDescription.setText(cleanerDescription.replace("\\\\n", "\n"));
     }
 
     @Override

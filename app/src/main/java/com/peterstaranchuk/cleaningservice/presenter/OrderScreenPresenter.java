@@ -33,9 +33,18 @@ public class OrderScreenPresenter {
     public void setPropertyType(PropertyType propertyType) {
         this.propertyType = propertyType;
         view.highlightSelectedMode(getHouseControlDrawable(), getApartmentControlDrawable());
+        view.setControlItemsTextColors(getHouseControlTextColor(), getApartmentControlTextColor());
         view.changeTitle();
 
         recalculatePrice();
+    }
+
+    private int getApartmentControlTextColor() {
+        return propertyType.equals(PropertyType.APARTMENT)? android.R.color.white : android.R.color.black;
+    }
+
+    private int getHouseControlTextColor() {
+        return propertyType.equals(PropertyType.HOUSE)? android.R.color.white : android.R.color.black;
     }
 
     private void recalculatePrice() {

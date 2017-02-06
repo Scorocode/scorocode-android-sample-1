@@ -38,4 +38,6 @@ public interface OrderScreenView {
     void setActionBar();
 
     void setSideMenu();
+
+    void setControlItemsTextColors(int houseColorId, int apartmentColorId);
 }

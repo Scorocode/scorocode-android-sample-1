@@ -75,19 +75,10 @@ public class CleanersAdapter extends BaseAdapter {
 
         Picasso.with(context)
                 .load(photoUrl)
-                .fit()
-                .placeholder(R.drawable.ic_add_white_24dp)
+                .placeholder(R.drawable.no_image)
                 .into(holder.ivCleanerPhoto);
 
-
-
-
         holder.tvCleanerName.setText(fieldHelper.getCleanerNameFrom(document));
-
-        //you can get id of document using getId() method
-//        holder.tvCleanerName.setText(document.getId());
-        //you can get any field content from document by fields't name using get() method
-//        holder.ivCleanerPhoto.setText(document.get("documentName").toString());
 
         return view;
     }
