@@ -55,7 +55,7 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
                 .load(imageUrl)
                 .resize(avatarSize, avatarSize)
                 .centerCrop()
-                .placeholder(R.drawable.ic_face_black_24dp)
+                .placeholder(R.drawable.no_image)
                 .into(ivCleanerPhoto);
 
         tvCleanerName.setText(cleanerName);
@@ -64,7 +64,10 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
 
     @Override
     public void setActionBar() {
-        ActionBarHelper.setHomeButton(getSupportActionBar());
+        if(getSupportActionBar() != null) {
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+            getSupportActionBar().setTitle(R.string.cleanersInfoActivityTitle);
+        }
     }
 
     @Override

@@ -67,7 +67,10 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
 
     @Override
     public void setActionBar() {
-        ActionBarHelper.setHomeButton(getSupportActionBar());
+        if(getSupportActionBar() != null) {
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+            getSupportActionBar().setTitle(R.string.cleanerListActivityTitle);
+        }
     }
 
     @Override

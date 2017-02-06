@@ -62,7 +62,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public void setActionBar() {
-        ActionBarHelper.setHomeButton(getSupportActionBar());
+        if(getSupportActionBar() != null) {
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+            getSupportActionBar().setTitle(R.string.registerActivityTitle);
+        }
     }
 
     @OnClick(R.id.btnRegister)

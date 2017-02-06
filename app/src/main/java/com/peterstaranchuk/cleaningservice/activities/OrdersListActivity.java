@@ -50,7 +50,10 @@ public class OrdersListActivity extends AppCompatActivity implements OrdersListS
 
     @Override
     public void setActionBar() {
-        ActionBarHelper.setHomeButton(getSupportActionBar());
+        if(getSupportActionBar() != null) {
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+            getSupportActionBar().setTitle(getString(R.string.ordersList));
+        }
     }
 
     @Override

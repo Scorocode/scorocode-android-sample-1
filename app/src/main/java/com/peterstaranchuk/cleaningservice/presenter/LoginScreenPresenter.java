@@ -34,6 +34,7 @@ public class LoginScreenPresenter {
         view.disableLoginButton();
         view.setDataListeners();
         view.setItemsVisibility();
+        view.setActionBar();
     }
 
     public void onRegisterButtonClicked() {

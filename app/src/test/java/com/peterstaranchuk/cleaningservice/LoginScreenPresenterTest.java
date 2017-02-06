@@ -81,4 +81,13 @@ public class LoginScreenPresenterTest {
         //than
         verify(model).clearUserData();
     }
+
+    @Test
+    public void shouldSetActionBarTitleWhenActivityStarted() throws Exception {
+        //when
+        presenter.onCreateScreen();
+
+        //than
+        verify(view).setActionBar();
+    }
 }

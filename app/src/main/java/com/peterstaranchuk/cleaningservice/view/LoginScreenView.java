@@ -23,4 +23,6 @@ public interface LoginScreenView {
     void openRegisterScreen();
 
     void setItemsVisibility();
+
+    void setActionBar();
 }

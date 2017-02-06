@@ -9,4 +9,5 @@
     <dimen name="cleaner_avatar_size">240dp</dimen>
     <dimen name="cleaner_proto_size_in_list">200dp</dimen>
     <dimen name="cleaner_card_size_in_list">450dp</dimen>
+    <dimen name="house_picture_size">120dp</dimen>
 </resources>

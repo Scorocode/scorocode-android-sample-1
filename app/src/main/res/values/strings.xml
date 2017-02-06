@@ -45,7 +45,7 @@
     <string name="continue_action">Continue</string>
     <string name="no_item_selected">No item selected</string>
     <string name="change_document_info">Change</string>
-    <string name="cleanservice">CleanService</string>
+    <string name="cleanservice">Cleaning Service</string>
     <string name="price_for_cleaning">Price for cleaning</string>
     <string name="currency_sign">$</string>
     <string name="tell_us_about_your">Tell us about your</string>
@@ -95,4 +95,10 @@
     <string name="feedbackTextField">feedbackText</string>
     <string name="feedback_sent">Feedback sent</string>
     <string name="error_during_feedback_sending">Error during feedback sending</string>
+    <string name="orderActivity">Order</string>
+    <string name="ordersList">Orders list</string>
+    <string name="registerActivityTitle">Register</string>
+    <string name="cleanerListActivityTitle">Our cleaners</string>
+    <string name="cleanersInfoActivityTitle">Cleaner info</string>
+    <string name="loginScreenTitle">Login</string>
 </resources>

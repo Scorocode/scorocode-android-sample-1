@@ -100,6 +100,13 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         ButterKnife.findById(this, R.id.ivPicture).setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void setActionBar() {
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(getString(R.string.loginScreenTitle));
+        }
+    }
+
     public static void display(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
     }

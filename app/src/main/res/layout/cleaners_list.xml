@@ -10,10 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:text="@string/cleaners"
-            style="@style/labelStyle" />
-
         <ListView
             android:id="@+id/lvCleaners"
             android:divider="@android:color/transparent"

@@ -250,7 +250,10 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setActionBar() {
-        ActionBarHelper.setHomeButton(getSupportActionBar());
+        if(getSupportActionBar() != null) {
+            ActionBarHelper.setHomeButton(getSupportActionBar());
+            getSupportActionBar().setTitle(getString(R.string.orderActivity));
+        }
     }
 
     @Override
