@@ -39,13 +39,14 @@ public class OrderScreenModel {
         return price;
     }
 
-    public void placeOrder(String address, double sizeInSquareFoots, long bathroomsCount, long bedroomsCount, CallbackDocumentSaved callbackDocumentSaved) {
+    public void placeOrder(String address, PropertyType propertyType, double sizeInSquareFoots, long bathroomsCount, long bedroomsCount, CallbackDocumentSaved callbackDocumentSaved) {
         DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
 
         String userId = dataStoreHelper.getUserId();
         String userName = dataStoreHelper.getUserName();
 
         Document document = new Document(context.getString(R.string.collectionNameOrders));
+        Double price = getPrice(propertyType, sizeInSquareFoots, bedroomsCount, bathroomsCount);
 
         FieldHelper fieldHelper = new FieldHelper(context);
         document.setField(fieldHelper.userIdField(), userId);
@@ -55,6 +56,7 @@ public class OrderScreenModel {
         document.setField(fieldHelper.bathroomsCountField(), bathroomsCount);
         document.setField(fieldHelper.bedroomsCountField(), bedroomsCount);
         document.setField(fieldHelper.orderStatusField(), INITIAL_ORDER_STATE);
+        document.setField(fieldHelper.priceField(), price);
 
         document.saveDocument(callbackDocumentSaved);
     }

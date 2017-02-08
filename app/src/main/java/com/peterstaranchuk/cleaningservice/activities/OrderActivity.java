@@ -55,10 +55,10 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindString(R.string.currency_sign) String textCurrencySign;
     @BindString(R.string.tell_us_about_your) String textTitle;
 
-    /*@Inject */private OrderScreenPresenter presenter;
-    /*@Inject @Named(OrderScreenActionModule.ACTION_STATE_CHANGED)*/private Action1<CharSequence> stateChangedAction;
-    /*@Inject @Named(OrderScreenActionModule.ACTION_SET_HOUSE_PROPERTY_TYPE)*/ private Action1<Void> actionSetHousePropertyType;
-    /*@Inject @Named(OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE)*/ private Action1<Void> actionSetApartmentPropertyType;
+    private OrderScreenPresenter presenter;
+    private Action1<CharSequence> stateChangedAction;
+    private Action1<Void> actionSetHousePropertyType;
+    private Action1<Void> actionSetApartmentPropertyType;
     private AlertDialog orderPlacingDialog;
 
     @Override
@@ -70,9 +70,9 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         OrderScreenActionsComponent.Injector.inject(this);
 
         this.presenter = new OrderScreenPresenter(this, new OrderScreenModel(this));
-        stateChangedAction = presenter.getStateChangedAction();
-        actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
-        actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
+        this.stateChangedAction = presenter.getStateChangedAction();
+        this.actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
+        this.actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
 
         presenter.onCreate(savedInstanceState);
     }

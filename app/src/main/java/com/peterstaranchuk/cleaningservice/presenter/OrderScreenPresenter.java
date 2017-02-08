@@ -111,7 +111,7 @@ public class OrderScreenPresenter {
         };
 
         view.showPlaceOrderDialog();
-        model.placeOrder(view.getAddress(), view.getSizeInSquareFoots(),
+        model.placeOrder(view.getAddress(), getPropertyType(), view.getSizeInSquareFoots(),
                 view.getBathroomsCount(), view.getBedroomsCount(), callbackDocumentSaved);
     }
 

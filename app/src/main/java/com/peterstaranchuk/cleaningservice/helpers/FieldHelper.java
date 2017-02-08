@@ -34,6 +34,7 @@ public class FieldHelper {
     //feedback collection
     private String feedbackText;
     private String isEmployee;
+    private String orderPrice;
 
     public FieldHelper(Context context) {
         setCleanersCollectionFields(context);
@@ -51,6 +52,7 @@ public class FieldHelper {
         this.orderStatus = context.getString(R.string.orderStatusField);
         this.feedbackText = context.getString(R.string.feedbackTextField);
         this.isEmployee = context.getString(R.string.isEmployeeField);
+        this.orderPrice = context.getString(R.string.orderPriceField);
     }
 
     private void setCleanersCollectionFields(Context context) {
@@ -181,5 +183,9 @@ public class FieldHelper {
 
     public String isEmployeeField() {
         return isEmployee;
+    }
+
+    public String priceField() {
+        return orderPrice;
     }
 }

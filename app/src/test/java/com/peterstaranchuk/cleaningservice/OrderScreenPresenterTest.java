@@ -111,7 +111,7 @@ public class OrderScreenPresenterTest {
         verify(view).getSizeInSquareFoots();
         verify(view).getAddress();
 
-        verify(model).placeOrder(anyString(), anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
+        verify(model).placeOrder(anyString(), any(PropertyType.class),  anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
     }
 
     @Test

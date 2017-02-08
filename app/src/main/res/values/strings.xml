@@ -108,4 +108,5 @@
     <string name="status_error">can\'t get status. Please, call to our office.</string>
     <string name="isEmployeeField">isEmployee</string>
     <string name="user_registered">User registered succsessfull</string>
+    <string name="orderPriceField">orderPrice</string>
 </resources>
