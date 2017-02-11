@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ru.profit_group.scorocode_sdk.ScorocodeSdk;
 import rx.functions.Action1;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LoginActivity extends AppCompatActivity implements LoginScreenView {
 
@@ -99,7 +100,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
     @Override
     public void setItemsVisibility() {
         ButterKnife.findById(this, R.id.tvTitle).setVisibility(View.VISIBLE);
-        ButterKnife.findById(this, R.id.ivPicture).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -131,6 +131,11 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         intent.putExtra(EXTRA_EMAIL, email);
         intent.putExtra(EXTRA_PASSWORD, password);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 }

@@ -6,6 +6,7 @@ import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.enums.PropertyType;
 import com.peterstaranchuk.cleaningservice.helpers.DataStoreHelper;
 import com.peterstaranchuk.cleaningservice.helpers.FieldHelper;
+import com.peterstaranchuk.cleaningservice.helpers.InputHelper;
 
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackDocumentSaved;
 import ru.profit_group.scorocode_sdk.scorocode_objects.Document;
@@ -39,7 +40,7 @@ public class OrderScreenModel {
         return price;
     }
 
-    public void placeOrder(String address, PropertyType propertyType, double sizeInSquareFoots, long bathroomsCount, long bedroomsCount, CallbackDocumentSaved callbackDocumentSaved) {
+    public void placeOrder(String address, String contactPhone, PropertyType propertyType, double sizeInSquareFoots, long bathroomsCount, long bedroomsCount, CallbackDocumentSaved callbackDocumentSaved) {
         DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
 
         String userId = dataStoreHelper.getUserId();
@@ -56,7 +57,8 @@ public class OrderScreenModel {
         document.setField(fieldHelper.bathroomsCountField(), bathroomsCount);
         document.setField(fieldHelper.bedroomsCountField(), bedroomsCount);
         document.setField(fieldHelper.orderStatusField(), INITIAL_ORDER_STATE);
-        document.setField(fieldHelper.priceField(), price);
+        document.setField(fieldHelper.priceField(), InputHelper.round(price, 2));
+        document.setField(fieldHelper.contactPhoneField(), contactPhone);
 
         document.saveDocument(callbackDocumentSaved);
     }

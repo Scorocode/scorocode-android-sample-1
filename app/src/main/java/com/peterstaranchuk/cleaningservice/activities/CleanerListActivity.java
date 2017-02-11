@@ -81,7 +81,7 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_activity_menu, menu);
+        inflater.inflate(R.menu.menu_with_refresh, menu);
         return true;
     }
 
@@ -90,7 +90,7 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
         switch (item.getItemId()) {
 
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
 
             case R.id.refreshList:

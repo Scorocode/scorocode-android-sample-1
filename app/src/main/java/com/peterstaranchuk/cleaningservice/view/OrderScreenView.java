@@ -28,6 +28,8 @@ public interface OrderScreenView {
 
     String getAddress();
 
+    String getPhone();
+
     void orderSent();
 
     void errorDuringOrderSending();

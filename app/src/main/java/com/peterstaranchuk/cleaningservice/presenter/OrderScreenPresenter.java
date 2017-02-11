@@ -111,7 +111,7 @@ public class OrderScreenPresenter {
         };
 
         view.showPlaceOrderDialog();
-        model.placeOrder(view.getAddress(), getPropertyType(), view.getSizeInSquareFoots(),
+        model.placeOrder(view.getAddress(), view.getPhone(), getPropertyType(), view.getSizeInSquareFoots(),
                 view.getBathroomsCount(), view.getBedroomsCount(), callbackDocumentSaved);
     }
 
@@ -126,5 +126,14 @@ public class OrderScreenPresenter {
 
     public void storePropertyType(Bundle bundle) {
         view.storePropertyType(bundle);
+    }
+
+    public Action1<? super CharSequence> getActionRefreshButtonState() {
+        return new Action1<CharSequence>() {
+            @Override
+            public void call(CharSequence charSequence) {
+                view.refreshMakeAnOrderButtonState();
+            }
+        };
     }
 }

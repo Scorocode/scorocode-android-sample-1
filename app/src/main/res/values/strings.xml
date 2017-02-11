@@ -109,4 +109,8 @@
     <string name="isEmployeeField">isEmployee</string>
     <string name="user_registered">User registered succsessfull</string>
     <string name="orderPriceField">orderPrice</string>
+    <string name="phone">Contact phone:</string>
+    <string name="enter_your_phone">Enter your phone</string>
+    <string name="login">Login</string>
+    <string name="contactPhone">contactPhone</string>
 </resources>

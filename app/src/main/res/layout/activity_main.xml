@@ -139,11 +139,23 @@
                     android:hint="@string/enter_your_address" />
 
                 <TextView
-                    android:visibility="gone"
-                    android:id="@+id/tvPrice"
                     style="@style/labelStyle"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/price_for_cleaning" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone" />
+
+                <EditText
+                    android:id="@+id/etContactPhone"
+                    android:inputType="phone"
+                    style="@style/editTextStyle"
+                    android:hint="@string/enter_your_phone" />
+
+                <!--<TextView-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/tvPrice"-->
+                    <!--style="@style/labelStyle"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:text="@string/price_for_cleaning" />-->
 
 
             </LinearLayout>

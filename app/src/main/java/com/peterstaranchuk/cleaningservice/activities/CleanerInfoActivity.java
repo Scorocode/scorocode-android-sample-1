@@ -79,7 +79,7 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
 
             default:

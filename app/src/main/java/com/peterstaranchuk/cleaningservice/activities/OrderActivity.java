@@ -43,11 +43,11 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.cvBedroomsCounter) CounterView cvBedroomsCounter;
     @BindView(R.id.cvBathroomsCounter) CounterView cvBathroomsCounter;
     @BindView(R.id.etSizeInSQF) EditText etSizeInSQF;
-    @BindView(R.id.tvPrice) TextView tvPrice;
     @BindView(R.id.tvControlHouse) TextView tvControlHouse;
     @BindView(R.id.tvControlApartment) TextView tvControlApartment;
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.etAddress) EditText etAddress;
+    @BindView(R.id.etContactPhone) EditText etContactPhone;
     @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
     @BindView(R.id.lvMenuItems) ListView lvDrawerItems;
 
@@ -60,6 +60,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     private Action1<Void> actionSetHousePropertyType;
     private Action1<Void> actionSetApartmentPropertyType;
     private AlertDialog orderPlacingDialog;
+    private Action1<? super CharSequence> refreshButtonStateAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         this.stateChangedAction = presenter.getStateChangedAction();
         this.actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
         this.actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
-
+        this.refreshButtonStateAction = presenter.getActionRefreshButtonState();
         presenter.onCreate(savedInstanceState);
     }
 
@@ -90,12 +91,8 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
         cvBathroomsCounter.setCounterClickAction(stateChangedAction);
 
         RxTextView.textChanges(etSizeInSQF).subscribe(stateChangedAction);
-        RxTextView.textChanges(etAddress).subscribe(new Action1<CharSequence>() {
-            @Override
-            public void call(CharSequence charSequence) {
-                refreshMakeAnOrderButtonState();
-            }
-        });
+        RxTextView.textChanges(etAddress).subscribe(refreshButtonStateAction);
+        RxTextView.textChanges(etContactPhone).subscribe(refreshButtonStateAction);
         RxView.clicks(tvControlHouse).subscribe(actionSetHousePropertyType);
         RxView.clicks(tvControlApartment).subscribe(actionSetApartmentPropertyType);
     }
@@ -186,6 +183,11 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     }
 
     @Override
+    public String getPhone() {
+        return InputHelper.getStringFrom(etContactPhone);
+    }
+
+    @Override
     public void orderSent() {
         orderPlacingDialog.cancel();
 
@@ -230,7 +232,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void refreshMakeAnOrderButtonState() {
-        if(!getAddress().isEmpty() && presenter.getPrice() != OrderScreenModel.WRONG_PRICE) {
+        if(!getAddress().isEmpty() && !getPhone().isEmpty() && presenter.getPrice() != OrderScreenModel.WRONG_PRICE) {
             InputHelper.enableButton(btnMakeAnOrder);
         } else {
             InputHelper.disableButton(btnMakeAnOrder);
@@ -269,7 +271,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
 
             default:

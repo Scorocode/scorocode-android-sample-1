@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.dagger2components.RegisterScreenMVPComponent;
@@ -117,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public void showToast(int errorId) {
-
+        Toast.makeText(this, errorId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -133,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                onBackPressed();
                 return true;
 
             default:
