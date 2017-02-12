@@ -28,11 +28,19 @@ import com.peterstaranchuk.cleaningservice.view.OrderScreenView;
 
 import java.text.DecimalFormat;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.functions.Action1;
+
+import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_REFRESH_BUTTON_STATE;
+import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE;
+import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_SET_HOUSE_PROPERTY_TYPE;
+import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_STATE_CHANGED;
 
 public class OrderActivity extends AppCompatActivity implements OrderScreenView {
 
@@ -55,12 +63,12 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindString(R.string.currency_sign) String textCurrencySign;
     @BindString(R.string.tell_us_about_your) String textTitle;
 
-    private OrderScreenPresenter presenter;
-    private Action1<CharSequence> stateChangedAction;
-    private Action1<Void> actionSetHousePropertyType;
-    private Action1<Void> actionSetApartmentPropertyType;
+    @Inject OrderScreenPresenter presenter;
+    @Inject @Named(ACTION_STATE_CHANGED) Action1<CharSequence> stateChangedAction;
+    @Inject @Named(ACTION_SET_HOUSE_PROPERTY_TYPE) Action1<Void> actionSetHousePropertyType;
+    @Inject @Named(ACTION_SET_APARTMENT_PROPERTY_TYPE) Action1<Void> actionSetApartmentPropertyType;
+    @Inject @Named(ACTION_REFRESH_BUTTON_STATE) Action1<CharSequence> refreshButtonStateAction;
     private AlertDialog orderPlacingDialog;
-    private Action1<? super CharSequence> refreshButtonStateAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +78,11 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
         OrderScreenActionsComponent.Injector.inject(this);
 
-        this.presenter = new OrderScreenPresenter(this, new OrderScreenModel(this));
-        this.stateChangedAction = presenter.getStateChangedAction();
-        this.actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
-        this.actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
-        this.refreshButtonStateAction = presenter.getActionRefreshButtonState();
+//        this.presenter = new OrderScreenPresenter(this, new OrderScreenModel(this));
+//        this.stateChangedAction = presenter.getStateChangedAction();
+//        this.actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
+//        this.actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
+//        this.refreshButtonStateAction = presenter.getActionRefreshButtonState();
         presenter.onCreate(savedInstanceState);
     }
 

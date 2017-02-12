@@ -128,7 +128,7 @@ public class OrderScreenPresenter {
         view.storePropertyType(bundle);
     }
 
-    public Action1<? super CharSequence> getActionRefreshButtonState() {
+    public Action1<CharSequence> getActionRefreshButtonState() {
         return new Action1<CharSequence>() {
             @Override
             public void call(CharSequence charSequence) {

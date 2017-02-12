@@ -46,8 +46,12 @@ dependencies {
 
 
     //Dagger 2
-    compile 'com.google.dagger:dagger:2.0'
-    apt 'com.google.dagger:dagger-compiler:2.0'
+//    compile 'com.google.dagger:dagger:2.0'
+//    apt 'com.google.dagger:dagger-compiler:2.0'
+//    provided 'javax.annotation:jsr250-api:1.0'
+
+    apt 'com.google.dagger:dagger-compiler:2.8'
+    compile 'com.google.dagger:dagger:2.8'
     provided 'javax.annotation:jsr250-api:1.0'
 
     //tests
