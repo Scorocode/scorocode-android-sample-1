@@ -37,7 +37,7 @@ public class LoginCallbackModule {
                 DataStoreHelper dataStoreHelper = new DataStoreHelper(context);
                 dataStoreHelper.storeUserName(getUserName(responseLogin));
                 dataStoreHelper.storeUserId(getUserId(responseLogin));
-
+                dataStoreHelper.storeUserEmail(getUserEmail(responseLogin));
                 OrderActivity.display(context);
             }
 
@@ -48,6 +48,11 @@ public class LoginCallbackModule {
                 Toast.makeText(context, context.getString(R.string.cant_login) + "\n" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         };
+    }
+
+    private String getUserEmail(ResponseLogin responseLogin) {
+        String userEmail = String.valueOf(responseLogin.getResult().getUserInfo().get(context.getString(R.string.fieldEmail)));
+        return userEmail != null? userEmail : "";
     }
 
     @NonNull

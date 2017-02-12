@@ -15,6 +15,21 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="TextStyle">
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="TextAppearance.Text.Regular" parent="android:TextAppearance">
+        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Regular.ttf</item>
+    </style>
+
+    <style name="TextStyle.Title" parent="TextStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
+    </style>
 
     <style name="labelStyle">
         <item name="android:textColor">@android:color/black</item>
@@ -65,4 +80,5 @@
         <item name="android:layout_marginTop">2dp</item>
     </style>
 
+    <color name="black_effective">#2a2a2a</color>
 </resources>

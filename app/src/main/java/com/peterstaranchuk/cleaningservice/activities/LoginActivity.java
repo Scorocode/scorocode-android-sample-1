@@ -49,6 +49,10 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         );
 
         presenter.onCreate(savedInstanceState);
+
+        //TODO delete
+        etEmail.setText("ps@gmail.com");
+        etPassword.setText("peter555");
     }
 
     @OnClick(R.id.btnLogin)
@@ -88,8 +92,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
 
     @Override
     public void setDataListeners() {
-        InputHelper.checkForEmptyEnter(etEmail, action);
-        InputHelper.checkForEmptyEnter(etPassword, action);
+        InputHelper.setEmptyEnterListener(etEmail, action);
+        InputHelper.setEmptyEnterListener(etPassword, action);
     }
 
     @Override

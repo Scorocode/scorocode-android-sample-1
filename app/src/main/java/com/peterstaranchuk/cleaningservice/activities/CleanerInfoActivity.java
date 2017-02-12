@@ -3,10 +3,10 @@ package com.peterstaranchuk.cleaningservice.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservice.R;
@@ -27,7 +27,7 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
     @BindView(R.id.ivCleanerPhoto) ImageView ivCleanerPhoto;
     @BindView(R.id.tvCleanerName) TextView tvCleanerName;
     @BindView(R.id.tvCleanerDescription) TextView tvCleanerDescription;
-    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
+//    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
 
     private CleanerInfoScreenPresenter presenter;
 
@@ -72,7 +72,8 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
 
     @Override
     public void setSideMenu() {
-        SideMenuHelper.initSideMenuItems(lvMenuItems);
+        NavigationView view = ButterKnife.findById(this, R.id.navigation_view);
+        SideMenuHelper.initSideMenu(view);
     }
 
     @Override

@@ -85,10 +85,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public void setDataListeners() {
-        InputHelper.checkForEmptyEnter(etUserName, inputCheckCallback);
-        InputHelper.checkForEmptyEnter(etEmail, inputCheckCallback);
-        InputHelper.checkForEmptyEnter(etPassword, inputCheckCallback);
-        InputHelper.checkForEmptyEnter(etRepeatPassword, inputCheckCallback);
+        InputHelper.setEmptyEnterListener(etUserName, inputCheckCallback);
+        InputHelper.setEmptyEnterListener(etEmail, inputCheckCallback);
+        InputHelper.setEmptyEnterListener(etPassword, inputCheckCallback);
+        InputHelper.setEmptyEnterListener(etRepeatPassword, inputCheckCallback);
     }
 
     @Override

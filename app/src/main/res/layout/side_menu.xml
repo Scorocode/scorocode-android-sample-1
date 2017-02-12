@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_view"
+    style="@style/Widget.Design.NavigationView"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_gravity="start">
+    android:layout_gravity="start"
+    android:background="@android:color/white"
+    app:headerLayout="@layout/drawer_header"
+    app:itemBackground="@android:color/white"
+    app:itemIconTint="@color/black_effective"
+    app:itemTextColor="@color/black_effective"
+    app:menu="@menu/side_menu_drawer"/>
 
-    <ListView
-        android:id="@+id/lvMenuItems"
-        android:paddingTop="24dp"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#FFF"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp" />
-</LinearLayout>

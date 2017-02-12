@@ -3,6 +3,7 @@ package com.peterstaranchuk.cleaningservice.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,7 +30,7 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
     @BindView(R.id.lvCleaners) ListView lvCleaners;
-    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
+//    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private CleanersListScreenPresenter presenter;
 
     @Override
@@ -75,7 +76,8 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
 
     @Override
     public void setSideMenu() {
-        SideMenuHelper.initSideMenuItems(lvMenuItems);
+        NavigationView view = ButterKnife.findById(this, R.id.navigation_view);
+        SideMenuHelper.initSideMenu(view);
     }
 
     @Override

@@ -31,6 +31,12 @@ public class DataStoreHelper {
                 .apply();
     }
 
+    public void storeUserEmail(String email) {
+        sharedPreferences.edit()
+                .putString(context.getString(R.string.shared_prefs_key_user_email), email)
+                .apply();
+    }
+
     public void clearUserData() {
         storeUserId("");
         storeUserName("");
@@ -44,5 +50,10 @@ public class DataStoreHelper {
     @NonNull
     public String getUserId() {
         return sharedPreferences.getString(context.getString(R.string.shared_prefs_key_userid), "");
+    }
+
+    @NonNull
+    public String getUserEmail() {
+        return sharedPreferences.getString(context.getString(R.string.shared_prefs_key_user_email), "");
     }
 }

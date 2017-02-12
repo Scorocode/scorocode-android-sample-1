@@ -19,7 +19,7 @@ import rx.functions.Action1;
  */
 
 public class InputHelper {
-    public static void checkForEmptyEnter(EditText viewForCheck, Action1<CharSequence> callbackAction) {
+    public static void setEmptyEnterListener(EditText viewForCheck, Action1<CharSequence> callbackAction) {
         RxTextView.textChanges(viewForCheck)
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -48,6 +48,19 @@ public class InputHelper {
         if(button != null) {
             button.setEnabled(false);
             button.setBackgroundColor(button.getResources().getColor(R.color.disabledButtonColor));
+        }
+    }
+
+    @NonNull
+    public static String capitalizeFirstLetter(String s) {
+        if(s == null) {
+            return "";
+        }
+
+        if(s.length() > 0) {
+            return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+        } else {
+            return s.toUpperCase();
         }
     }
 

@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -57,7 +57,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.etAddress) EditText etAddress;
     @BindView(R.id.etContactPhone) EditText etContactPhone;
     @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
-    @BindView(R.id.lvMenuItems) ListView lvDrawerItems;
+//    @BindView(R.id.lvMenuItems) ListView lvDrawerItems;
 
     @BindString(R.string.price_for_cleaning) String textPriceForCleaning;
     @BindString(R.string.currency_sign) String textCurrencySign;
@@ -78,11 +78,6 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
         OrderScreenActionsComponent.Injector.inject(this);
 
-//        this.presenter = new OrderScreenPresenter(this, new OrderScreenModel(this));
-//        this.stateChangedAction = presenter.getStateChangedAction();
-//        this.actionSetHousePropertyType = presenter.getActionSetHousePropertyType();
-//        this.actionSetApartmentPropertyType = presenter.getActionSetApartmentPropertyType();
-//        this.refreshButtonStateAction = presenter.getActionRefreshButtonState();
         presenter.onCreate(savedInstanceState);
     }
 
@@ -268,7 +263,8 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
 
     @Override
     public void setSideMenu() {
-        SideMenuHelper.initSideMenuItems(lvDrawerItems);
+        NavigationView view = ButterKnife.findById(this, R.id.navigation_view);
+        SideMenuHelper.initSideMenu(view);
     }
 
     public static void display(Context context) {

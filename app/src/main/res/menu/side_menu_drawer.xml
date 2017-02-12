@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/nav_item_orders"
+            android:checked="true"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="@string/menu_item_orders" />
+        <item
+            android:id="@+id/nav_item_cleaners"
+            android:checked="true"
+            android:icon="@drawable/ic_perm_identity_black_24dp"
+            android:title="@string/menu_item_cleaners" />
+
+        <item
+            android:id="@+id/nav_item_feedback"
+            android:checked="true"
+            android:icon="@drawable/ic_thumbs_up_down_black_24dp"
+            android:title="@string/menu_item_feedback" />
+
+        <item
+            android:id="@+id/nav_item_logout"
+            android:checked="true"
+            android:icon="@drawable/ic_reply_black_24dp"
+            android:title="@string/menu_item_logout" />
+    </group>
+</menu>
