@@ -57,7 +57,6 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @BindView(R.id.etAddress) EditText etAddress;
     @BindView(R.id.etContactPhone) EditText etContactPhone;
     @BindView(R.id.btnMakeAnOrder) Button btnMakeAnOrder;
-//    @BindView(R.id.lvMenuItems) ListView lvDrawerItems;
 
     @BindString(R.string.price_for_cleaning) String textPriceForCleaning;
     @BindString(R.string.currency_sign) String textCurrencySign;

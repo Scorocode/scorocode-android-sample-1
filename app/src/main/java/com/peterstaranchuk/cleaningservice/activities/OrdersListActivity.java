@@ -28,7 +28,6 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 public class OrdersListActivity extends AppCompatActivity implements OrdersListScreenView {
 
     @BindView(R.id.lvOrders) ListView lvOrders;
-//    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private OrdersListScreenPresenter presenter;
 
     @Override

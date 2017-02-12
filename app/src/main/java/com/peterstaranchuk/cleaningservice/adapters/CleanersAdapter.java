@@ -70,6 +70,12 @@ public class CleanersAdapter extends BaseAdapter {
             view.setTag(holder);
         }
 
+        customizeView(position, holder);
+
+        return view;
+    }
+
+    private void customizeView(int position, ViewHolder holder) {
         DocumentInfo document = (DocumentInfo) getItem(position);
 
         FieldHelper fieldHelper = new FieldHelper(context);
@@ -83,8 +89,6 @@ public class CleanersAdapter extends BaseAdapter {
                 .into(holder.ivCleanerPhoto);
 
         holder.tvCleanerName.setText(fieldHelper.getCleanerNameFrom(document));
-
-        return view;
     }
 
     static class ViewHolder {

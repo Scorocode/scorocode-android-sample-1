@@ -30,7 +30,6 @@ import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
     @BindView(R.id.lvCleaners) ListView lvCleaners;
-//    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
     private CleanersListScreenPresenter presenter;
 
     @Override

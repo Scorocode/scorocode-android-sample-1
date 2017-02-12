@@ -27,7 +27,6 @@ public class CleanerInfoActivity extends AppCompatActivity implements CleanerInf
     @BindView(R.id.ivCleanerPhoto) ImageView ivCleanerPhoto;
     @BindView(R.id.tvCleanerName) TextView tvCleanerName;
     @BindView(R.id.tvCleanerDescription) TextView tvCleanerDescription;
-//    @BindView(R.id.lvMenuItems) ListView lvMenuItems;
 
     private CleanerInfoScreenPresenter presenter;
 

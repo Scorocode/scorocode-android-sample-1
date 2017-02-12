@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.LoginActivity" android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.OrderActivity" android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".activities.RegisterActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activities.CleanerListActivity" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.OrderActivity" />
         <activity android:name=".activities.OrdersListActivity" />
         <activity android:name=".activities.CleanerInfoActivity"/>
     </application>
