@@ -44,8 +44,8 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         ScorocodeSdk.initWith(
                 getString(R.string.appKey),
                 getString(R.string.clientKey),
-                getString(R.string.masterKey),
-                null, null, null, null
+                null,
+                getString(R.string.fileKey), null, null, null
         );
 
         presenter.onCreate(savedInstanceState);
