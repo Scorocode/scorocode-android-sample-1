@@ -36,6 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
 
 import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_REFRESH_BUTTON_STATE;
 import static com.peterstaranchuk.cleaningservice.dagger2modules.OrderScreenActionModule.ACTION_SET_APARTMENT_PROPERTY_TYPE;
@@ -68,6 +69,7 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     @Inject @Named(ACTION_SET_APARTMENT_PROPERTY_TYPE) Action1<Void> actionSetApartmentPropertyType;
     @Inject @Named(ACTION_REFRESH_BUTTON_STATE) Action1<CharSequence> refreshButtonStateAction;
     private AlertDialog orderPlacingDialog;
+    private CompositeSubscription compositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +93,21 @@ public class OrderActivity extends AppCompatActivity implements OrderScreenView 
     public void setOrderInfoChangedListeners() {
         cvBedroomsCounter.setCounterClickAction(stateChangedAction);
         cvBathroomsCounter.setCounterClickAction(stateChangedAction);
+        compositeSubscription = new CompositeSubscription();
 
-        RxTextView.textChanges(etSizeInSQF).subscribe(stateChangedAction);
-        RxTextView.textChanges(etAddress).subscribe(refreshButtonStateAction);
-        RxTextView.textChanges(etContactPhone).subscribe(refreshButtonStateAction);
-        RxView.clicks(tvControlHouse).subscribe(actionSetHousePropertyType);
-        RxView.clicks(tvControlApartment).subscribe(actionSetApartmentPropertyType);
+        compositeSubscription.add(RxTextView.textChanges(etSizeInSQF).subscribe(stateChangedAction));
+        compositeSubscription.add(RxTextView.textChanges(etAddress).subscribe(refreshButtonStateAction));
+        compositeSubscription.add(RxTextView.textChanges(etContactPhone).subscribe(refreshButtonStateAction));
+        compositeSubscription.add(RxView.clicks(tvControlHouse).subscribe(actionSetHousePropertyType));
+        compositeSubscription.add(RxView.clicks(tvControlApartment).subscribe(actionSetApartmentPropertyType));
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.unsubscribe();
+        }
+        super.onDestroy();
     }
 
     @OnClick(R.id.btnMakeAnOrder)

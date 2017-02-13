@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
 
     @Override
     public void displayFilledLoginActivity(String email, String password) {
-        LoginActivity.display(getContext(), email, password);
+        LoginActivity.displayFilled(getContext(), email, password);
     }
 
     @OnClick(R.id.btnRegister)

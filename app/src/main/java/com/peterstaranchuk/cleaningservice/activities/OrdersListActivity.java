@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -59,9 +61,15 @@ public class OrdersListActivity extends AppCompatActivity implements OrdersListS
     }
 
     @Override
-    public void setOrdersList(List<DocumentInfo> ordersList) {
+    public void setOrdersList(final List<DocumentInfo> ordersList) {
         OrdersAdapter adapter = new OrdersAdapter(this, ordersList, R.layout.item_order);
         lvOrders.setAdapter(adapter);
+        lvOrders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                presenter.onOrderItemClicked(ordersList.get(position));
+            }
+        });
     }
 
     @Override
@@ -73,6 +81,11 @@ public class OrdersListActivity extends AppCompatActivity implements OrdersListS
     public void setSideMenu() {
         NavigationView view = ButterKnife.findById(this, R.id.navigation_view);
         SideMenuHelper.initSideMenu(view);
+    }
+
+    @Override
+    public void openOrderDetailScreen(DocumentInfo order) {
+        OrdersDetailActivity.display(this, order);
     }
 
 

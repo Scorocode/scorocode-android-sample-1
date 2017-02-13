@@ -3,6 +3,7 @@ package com.peterstaranchuk.cleaningservice.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -27,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
+import static com.peterstaranchuk.cleaningservice.presenter.CleanersListScreenPresenter.EXTRA_LIST_VIEW_STATE;
+
 public class CleanerListActivity extends AppCompatActivity implements CleanersListScreenView {
 
     @BindView(R.id.lvCleaners) ListView lvCleaners;
@@ -39,7 +42,19 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
         ButterKnife.bind(this);
 
         presenter = new CleanersListScreenPresenter(this, new CleanersListScreenModel(this));
-        presenter.onCreate();
+        presenter.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(EXTRA_LIST_VIEW_STATE, presenter.getListState());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onPause() {
+        presenter.saveListState(lvCleaners.onSaveInstanceState());
+        super.onPause();
     }
 
     @Override
@@ -49,7 +64,7 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     }
 
     @Override
-    public void refreshCleanersList(final List<DocumentInfo> documentInfos) {
+    public void refreshCleanersList(final List<DocumentInfo> documentInfos, Parcelable listViewState) {
         CleanersAdapter adapter = new CleanersAdapter(CleanerListActivity.this, documentInfos, R.layout.item_cleaner);
         lvCleaners.setAdapter(adapter);
         lvCleaners.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,6 +73,10 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
                 CleanerInfoActivity.display(CleanerListActivity.this, documentInfos.get(position));
             }
         });
+
+        if(listViewState != null) {
+            lvCleaners.onRestoreInstanceState(listViewState);
+        }
     }
 
     @Override
@@ -77,6 +96,11 @@ public class CleanerListActivity extends AppCompatActivity implements CleanersLi
     public void setSideMenu() {
         NavigationView view = ButterKnife.findById(this, R.id.navigation_view);
         SideMenuHelper.initSideMenu(view);
+    }
+
+    @Override
+    public Parcelable getCleanersListState() {
+        return lvCleaners.onSaveInstanceState();
     }
 
     @Override

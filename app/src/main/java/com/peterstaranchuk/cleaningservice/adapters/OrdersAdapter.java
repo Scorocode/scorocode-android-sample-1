@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.peterstaranchuk.cleaningservice.R;
 import com.peterstaranchuk.cleaningservice.helpers.FieldHelper;
+import com.peterstaranchuk.cleaningservice.model.OrdersListScreenModel;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -88,27 +89,9 @@ public class OrdersAdapter extends BaseAdapter {
 
         holder.tvOrderNumber.setText(textOrderNumber + " " + (getCount() - position));
         holder.tvOrderPlaceTime.setText(textOrderPlacedAt + "\n" + dateFormat.format(date) + " " + timeFormat.format(date));
-        holder.tvOrderStatus.setText(textOrderStatus + " " + getOrderStatusFrom(orderStatusCode));
+        holder.tvOrderStatus.setText(textOrderStatus + " " + OrdersListScreenModel.getOrderStatusFrom(context, orderStatusCode));
 
         return view;
-    }
-
-    private String getOrderStatusFrom(Integer orderStatusCode) {
-        switch (orderStatusCode) {
-            case 0:
-                return context.getString(R.string.status_placed);
-
-            case 1:
-                return context.getString(R.string.status_accepted);
-
-            case 2:
-                return context.getString(R.string.status_inprogress);
-
-            case 3:
-                return context.getString(R.string.status_completed);
-        }
-
-        return context.getString(R.string.status_error);
     }
 
     static class ViewHolder {

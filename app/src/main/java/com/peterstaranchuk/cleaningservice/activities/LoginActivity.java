@@ -49,10 +49,6 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         );
 
         presenter.onCreate(savedInstanceState);
-
-        //TODO delete
-        etEmail.setText("ps@gmail.com");
-        etPassword.setText("peter555");
     }
 
     @OnClick(R.id.btnLogin)
@@ -128,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements LoginScreenView 
         context.startActivity(new Intent(context, LoginActivity.class));
     }
 
-    public static void display(Context context, String email, String password) {
+    public static void displayFilled(Context context, String email, String password) {
         //this method should be used only after successful registration process
 
         Intent intent = new Intent(context, LoginActivity.class);

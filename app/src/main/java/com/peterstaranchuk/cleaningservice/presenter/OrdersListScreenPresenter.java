@@ -40,4 +40,8 @@ public class OrdersListScreenPresenter {
             }
         });
     }
+
+    public void onOrderItemClicked(DocumentInfo order) {
+        view.openOrderDetailScreen(order);
+    }
 }

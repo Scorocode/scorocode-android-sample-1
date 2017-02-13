@@ -15,6 +15,9 @@
     <string name="cleaners">Cleaners:</string>
     <string name="documentName">DocumentName:</string>
     <string name="documentId">Document id:</string>
+    <string name="fieldContactPhone">contactPhone</string>
+    <string name="fieldAddress">address</string>
+    <string name="fieldOrderPrice">orderPrice</string>
     <string name="errorDuringDocumentLoading">Can\'t load document list</string>
     <string name="addDocument">Add document</string>
     <string name="login_activity_password_repeat_edittext">Repeat password</string>
@@ -89,7 +92,6 @@
     <string name="order_item_placed_at">Placed at:</string>
     <string name="order_item_status">Order status:</string>
     <string name="createdAtField">createdAt</string>
-    <string name="orderStatusField">orderStatus</string>
     <string name="feedback_label_text">Thanks for your feedback. You can tell us about application. About features you need in app and about our cleaners. Let\'s keep in touch.</string>
     <string name="feedback_hint">Please, write your feedback here</string>
     <string name="collectionNameFeedback">feedback</string>
@@ -116,4 +118,25 @@
     <string name="contactPhone">contactPhone</string>
     <string name="fieldEmail">email</string>
     <string name="hello">Hello</string>
+    <string name="removeOrder">Remove order</string>
+    <string name="area">Area:</string>
+    <string name="numberOfBathrooms">Number of bathrooms:</string>
+    <string name="numberOfBedrooms">Number of bedrooms:</string>
+    <string name="textUserPhone">Contact phone:</string>
+    <string name="textUserAddress">Address:</string>
+    <string name="order_price">Price:</string>
+    <string name="placed_at">Placed at:</string>
+    <string name="textOrderStatus">Order status:</string>
+    <string name="sqft">sqrt</string>
+    <string name="currencySign">$</string>
+    <string name="fieldCreatedAt">createdAt</string>
+    <string name="fieldOrderStatus">orderStatus</string>
+    <string name="fieldArea">sizeInSquareFoots</string>
+    <string name="orderStatusField">orderStatus</string>
+    <string name="errorDuringOrderDeletion">Can\'t delete order. Try again later</string>
+    <string name="warrant">WARRANT</string>
+    <string name="warrant_delete_order">Are you sure you want to delete this order?</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
+    <string name="orderDetailsTitle">Order details</string>
 </resources>

@@ -17,4 +17,6 @@ public interface OrdersListScreenView {
     void showError(int error);
 
     void setSideMenu();
+
+    void openOrderDetailScreen(DocumentInfo order);
 }

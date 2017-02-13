@@ -111,7 +111,7 @@ public class OrderScreenPresenterTest {
         verify(view).getSizeInSquareFoots();
         verify(view).getAddress();
 
-        verify(model).placeOrder(anyString(), , any(PropertyType.class),  anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class), );
+        verify(model).placeOrder(anyString(), view.getPhone(), any(PropertyType.class),  anyDouble(), anyLong(), anyLong(), any(CallbackDocumentSaved.class));
     }
 
     @Test
@@ -174,4 +174,5 @@ public class OrderScreenPresenterTest {
         //than
         verify(view, never()).restorePropertyType(any(Bundle.class));
     }
+
 }

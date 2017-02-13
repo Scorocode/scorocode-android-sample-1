@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackFindDocument;
+import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
@@ -56,5 +57,15 @@ public class OrdersListScreenTest {
 
         //than
         verify(view).setSideMenu();
+    }
+
+    @Test
+    public void shouldOpenOrderDetailsScreenWhenOrderItemClicked() throws Exception {
+        //when
+        presenter.onOrderItemClicked(new DocumentInfo());
+
+        //than
+        verify(view).openOrderDetailScreen(any(DocumentInfo.class));
+
     }
 }

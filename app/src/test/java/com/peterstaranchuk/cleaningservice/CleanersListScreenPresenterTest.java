@@ -1,5 +1,7 @@
 package com.peterstaranchuk.cleaningservice;
 
+import android.os.Bundle;
+
 import com.peterstaranchuk.cleaningservice.model.CleanersListScreenModel;
 import com.peterstaranchuk.cleaningservice.presenter.CleanersListScreenPresenter;
 import com.peterstaranchuk.cleaningservice.view.CleanersListScreenView;
@@ -11,9 +13,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import ru.profit_group.scorocode_sdk.Callbacks.CallbackFindDocument;
+import ru.profit_group.scorocode_sdk.scorocode_objects.DocumentInfo;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Peter Staranchuk.
@@ -33,7 +37,7 @@ public class CleanersListScreenPresenterTest {
     @Test
     public void shouldSetActionBarWhenScreenStarted() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(new Bundle());
 
         //than
         verify(view).setActionBar();
@@ -54,9 +58,11 @@ public class CleanersListScreenPresenterTest {
     @Test
     public void shouldInitSideMenuWhenScreenCreated() throws Exception {
         //when
-        presenter.onCreate();
+        presenter.onCreate(new Bundle());
 
         //than
         verify(view).setSideMenu();
     }
+
+
 }
